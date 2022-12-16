@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/16 19:41:10 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:52:51 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,26 @@ namespace ft{
 				current = it;
 			}
 
+			template <class iter>
+			reverse_iterator(const reverse_iterator<iter> &it){
+				(*this) = it;
+			}
+
 			iterator_type base() const{
 				return (current);
 			}
-			
+
+			template <class iter>
+			reverse_iterator<iter>	&operator=(const reverse_iterator<iter> &it){
+				this->current = it.current;
+				return (*this);
+			}			
+
 			reference operator*(){
 				iterator_type	tmp(current);
 				return (*(--tmp));
 			}
-
+			
 			iterator_type operator+(difference_type n) const{
 				iterator_type iter(current - n);
 				return (iter);
@@ -106,8 +117,8 @@ namespace ft{
 			reference	operator[](difference_type n) const{
 				return (base()[-n -1]);
 			}
-			
 	};
+	
 }
 
 #endif
