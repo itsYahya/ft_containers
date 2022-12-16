@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/16 14:44:03 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:25:02 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ namespace ft{
 	};
 
 	template <class iterator>
-	class reverse_iterator : public iterator < typename iterator_traits<iterator>::difference_type,
+	class reverse_iterator : public iterator < 
+							typename iterator_traits<iterator>::iterator_category,
 							typename iterator_traits<iterator>::value_type,
+							typename iterator_traits<iterator>::difference_type,
 							typename iterator_traits<iterator>::pointer,
-							typename iterator_traits<iterator>::reference,
-							typename iterator_traits<iterator>::iterator_category>{
+							typename iterator_traits<iterator>::reference>{
 		protected:
 			iterator current;
 		
@@ -54,6 +55,22 @@ namespace ft{
 			reference operator*(){
 				iterator_type	tmp(current);
 				return (*(--tmp));
+			}
+
+			iterator_type operator+(difference_type n){
+				iterator_type iter(current + n);
+				return (iter);
+			}
+			
+			refrence	operator++(){
+				current++;
+				return (*this);
+			}
+			
+			iterator_type	operator++(int){
+				iterator_type	tmp(current);
+				current++;
+				return (tmp);
 			}
 	};
 }
