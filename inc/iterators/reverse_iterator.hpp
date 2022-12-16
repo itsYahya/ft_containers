@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/15 12:12:01 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:43:34 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,25 @@ namespace ft{
 							typename iterator_traits<iterator>::reference>{
 		protected:
 			iterator current;
+		
 		public:
 			typedef iterator	iterator_type;
 			typedef typename	iterator_traits<iterator>::value_type value_type;
 			typedef typename	iterator_traits<iterator>::pointer pointer;
 			typedef typename	iterator_traits<iterator>::reference reference;
+
+			reverse_iterator() {};
+			reverse_iterator(iterator_type it) {
+				current = it;
+			}
+
+			iterator_type base() const{
+				return (current);
+			}
+			
+			reference operator*(){
+				
+			}
 	};
 }
 
