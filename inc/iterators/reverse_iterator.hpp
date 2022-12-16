@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/15 12:43:34 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:28:55 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,21 @@ namespace ft{
 	};
 
 	template <class iterator>
-	class reverse_iterator : public iterator <typename iterator_traits<iterator>::value_type,
+	class reverse_iterator : public iterator < typename iterator_traits<iterator>::difference_type,
+							typename iterator_traits<iterator>::value_type,
 							typename iterator_traits<iterator>::pointer,
-							typename iterator_traits<iterator>::reference>{
+							typename iterator_traits<iterator>::reference,
+							typename iterator_traits<iterator>::iterator_category>{
 		protected:
 			iterator current;
 		
 		public:
 			typedef iterator	iterator_type;
+			typedef typename	iterator_traits<iterator>::difference_type difference_type;
 			typedef typename	iterator_traits<iterator>::value_type value_type;
 			typedef typename	iterator_traits<iterator>::pointer pointer;
 			typedef typename	iterator_traits<iterator>::reference reference;
+			typedef typename	iterator_traits<iterator>::iterator_category iterator_category;
 
 			reverse_iterator() {};
 			reverse_iterator(iterator_type it) {
@@ -46,7 +50,8 @@ namespace ft{
 			}
 			
 			reference operator*(){
-				
+				iterator_type	tmp(current);
+				return (*(--tmp));
 			}
 	};
 }
