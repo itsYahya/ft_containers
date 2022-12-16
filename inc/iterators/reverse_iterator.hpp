@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/16 14:28:55 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:44:03 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include "iterator_traits.hpp"
 
 namespace ft{
-	template <class T, class Pointer, class Reference>
+	template <class Category, class T, class Distance, class Pointer, class Reference>
 	struct iterator{
 		typedef T			value_type;
 		typedef Pointer		pointer;
 		typedef Reference	reference;
+		typedef Category	iterator_category;
+		typedef Distance	difference_type;
 	};
 
 	template <class iterator>
