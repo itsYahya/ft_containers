@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/17 23:06:50 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/17 23:14:08 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ namespace ft{
 			typedef T*								pointer;
 			typedef T&								reference;
 			typedef std::random_access_iterator_tag	iterator_category;
+
+			f_iterator() {};
+			
+			f_iterator(pointer p){
+				ptr = p;
+			}
+			
+			f_iterator(f_iterator &element){
+				ptr = element.ptr;
+			}
 	};
 }
 
