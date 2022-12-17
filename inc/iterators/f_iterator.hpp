@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/17 23:27:14 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/17 23:37:30 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,28 @@ namespace ft{
 
 			pointer	operator->(){
 				return (ptr);
+			}
+			
+			f_iterator	operator++(){
+				ptr++;
+				return (*this);
+			}
+
+			f_iterator	operator++(int){
+				f_iterator	iter(ptr);
+				ptr++;
+				return (iter);
+			}
+			
+			f_iterator	operator--(){
+				ptr--;
+				return (*this);
+			}
+
+			f_iterator	operator--(int){
+				f_iterator	iter(ptr);
+				ptr--;
+				return (iter);
 			}
 			
 			
