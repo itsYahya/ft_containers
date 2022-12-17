@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/17 11:41:54 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:47:35 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,36 @@ namespace ft{
 	template <class iter>
 	typename reverse_iterator<iter>::difference_type operator-(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
 		return (Lit.base() - Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator==(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() == Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator!=(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() != Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator<(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() < Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator<=(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() <= Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator>(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() > Rit.base());
+	}
+	
+	template <class iter>
+	bool	operator>=(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() >= Rit.base());
 	}
 }
 
