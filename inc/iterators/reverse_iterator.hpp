@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/17 11:47:35 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/17 12:58:04 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 #define REVERSE_ITERATOR_HPP
 
 #include "iterator_traits.hpp"
+#include "iterator.hpp"
 
 namespace ft{
-	template <class Category, class T, class Distance, class Pointer, class Reference>
-	struct iterator{
-		typedef T			value_type;
-		typedef Pointer		pointer;
-		typedef Reference	reference;
-		typedef Category	iterator_category;
-		typedef Distance	difference_type;
-	};
-
 	template <class iterator>
 	class reverse_iterator : public iterator < 
 							typename iterator_traits<iterator>::iterator_category,
