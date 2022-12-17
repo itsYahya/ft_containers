@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/16 19:52:51 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:41:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,17 @@ namespace ft{
 				return (base()[-n -1]);
 			}
 	};
-	
+
+	template <class iter>
+	reverse_iterator<iter> operator+(typename reverse_iterator<iter>::difference_type n, const reverse_iterator<iter> &it){
+		reverse_iterator<iter> tmp(it - n);
+		return (tmp);
+	}
+
+	template <class iter>
+	typename reverse_iterator<iter>::difference_type operator-(const reverse_iterator<iter> &Lit, const reverse_iterator<iter> &Rit){
+		return (Lit.base() - Rit.base());
+	}
 }
 
 #endif
