@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/17 23:37:30 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:42:12 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,25 @@ namespace ft{
 				return (iter);
 			}
 			
+			reference	operator+=(difference_type n){
+				ptr += n;
+				return (*this);
+			}
+			
+			reference	operator-=(difference_type n){
+				ptr -= n;
+				return (*this);
+			}
+			
+			f_iterator	operator+(difference_type n) const{
+				f_iterator iter(ptr + n);
+				return (iter);
+			}
+			
+			f_iterator	operator-(difference_type n) const{
+				f_iterator	iter(ptr - n);
+				return (iter);
+			}
 			
 	};
 }
