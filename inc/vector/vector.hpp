@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 20:27:33 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:04:52 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ namespace ft{
 			typedef typename allocator_type::pointer 						pointer;
 			typedef typename allocator_type::const_pointer 					const_pointer;
 			typedef typename allocator_type::size_type 						size_type;
-			typedef iterator<value_type>									iterator;
+			typedef ft::iterator<value_type>								iterator;
 			typedef const ft::iterator<value_type>							const_iterator;
 			typedef ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>					const_reverse_iterator;
@@ -120,6 +120,16 @@ namespace ft{
 					_realloc();
 					_construct(value);
 				}
+			}
+			
+			iterator	begin(){
+				iterator	iter(_arr);
+				return (iter);
+			}
+
+			const_iterator	begin() const{
+				const_iterator iter(_arr);
+				return (iter);
 			}
 	};
 }
