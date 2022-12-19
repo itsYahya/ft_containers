@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 16:00:27 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:01:08 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ namespace ft{
 				}
 			}
 			
+			template <class Iterator>
+			vector(Iterator from, Iterator until, const allocator_type &alloc = allocator_type()){
+				difference_type	n;
+				int				i;
+				
+				n = ft::difference<Iterator>(from, until);
+				_size = n;
+				_capacity = n;
+				_alloc = alloc;
+				_arr = _alloc.allocate(n);
+				i = 0;
+				for (; from != until; from++){
+					_alloc.construct(_arr + i, *from);
+				}
+			}
+
 	};
 }
 
