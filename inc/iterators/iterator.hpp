@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/18 15:00:08 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:08:50 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,23 @@ namespace ft{
 				return (ptr[n]);
 			}
 	};
+	
+	template <class T>
+	typename iterator_traits<T>::difference_type distance(T from, T until, std::random_access_iterator_tag){
+		typename iterator_traits<T> n;
+
+		n = until - from;
+		return (n);
+	}
+
+	template <class T>
+	typename iterator_traits<T>::difference_type difference(T from, T until){
+		typename iterator_traits<T>:: difference_type n;
+
+		n = ft::distance(from, until, iterator_traits<T>::iterator_category());
+		return (n);
+	}
+	
 }
 
 #endif
