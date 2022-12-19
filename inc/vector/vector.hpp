@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 12:54:56 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:56:27 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ namespace ft{
 			typedef ptrdiff_t									difference_type;
 			typedef size_t										size_type;
 			
+			vector(const allocator_type &alloc = allocator_type()) {
+				_size = 0;
+				_capacity = 0;
+				_arr = nullptr;
+				_alloc = alloc;
+			}
+
 			
 	};
 }
