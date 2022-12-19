@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 20:26:45 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:27:33 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ namespace ft{
 				}				
 				_alloc.deallocate(_arr, _size);
 				_arr = arr;
+			}
+
+			void	_construct(const T &value){
+				_alloc.construct(_arr + _size, value);
+				_size++;
 			}
 			
 		public:
@@ -99,6 +104,21 @@ namespace ft{
 
 				for (size_type i; i < _size; i++){
 					_alloc.construct(_arr + i, x._arr[i]);
+				}
+			}
+
+			void	push_back(const value_type &value){
+				if (_capacity == 0){
+					_arr = _alloc.allocate(1);
+					_construct(value);
+					_capacity = 1;
+				}
+				else if (_size < _capacity){
+					_construct(value);	
+				}
+				else {
+					_realloc();
+					_construct(value);
 				}
 			}
 	};
