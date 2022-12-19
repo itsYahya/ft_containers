@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 22:51:29 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:03:47 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,18 @@ namespace ft{
 			}
 			
 			iterator	end(){
-				iterator	iter(_arr + _size);
+				value_type	*ptr = NULL;
+				if (_arr != NULL)
+					ptr = _arr + _size;
+				iterator	iter(ptr);
 				return (iter);
 			}
 
 			const_iterator	end() const{
-				const_iterator	iter(_arr + _size);
+				value_type	*ptr = NULL;
+				if (_arr != NULL)
+					ptr = _arr + _size;
+				const_iterator	iter(ptr);
 				return (iter);
 			}
 
@@ -161,6 +167,7 @@ namespace ft{
 				const_reverse_iterator	riter(begin());
 				return (riter);
 			}
+			
 	};
 }
 
