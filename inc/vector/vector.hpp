@@ -6,19 +6,20 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 16:08:26 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:05:27 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VERCTO_HPP
+#ifndef VECTOR_HPP
 #define VECTOR_HPP
 
 #include <memory>
-#include "iterator.hpp"
-#include "reverse_iterator.hpp"
+#include "../iterators/iterator.hpp"
+#include "../iterators/reverse_iterator.hpp"
+#include <iostream>
 
 namespace ft{
-	template <class T, class Alloc = std::allocator<T>>
+	template <class T, class Alloc = std::allocator<T> >
 	class vector{
 		private:
 			T		*_arr;
@@ -35,11 +36,10 @@ namespace ft{
 			typedef typename allocator_type::const_pointer 					const_pointer;
 			typedef typename allocator_type::size_type 						size_type;
 			typedef iterator<value_type>									iterator;
-			typedef const iterator<value_type>								const_iterator;
-			typedef reverse_iterator<iterator>								reverse_iterator;
-			typedef reverse_iterator<const_iterator>						const_reverse_iterator;
-			typedef typename ft::iterator_traits<Iterator>::difference_type	difference_type;
-			typedef typename allocator_type::size_type						size_type;
+			typedef const ft::iterator<value_type>							const_iterator;
+			typedef ft::reverse_iterator<iterator>							reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>					const_reverse_iterator;
+			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 			
 			vector(const allocator_type &alloc = allocator_type()) {
 				_size = 0;
