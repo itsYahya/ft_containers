@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 18:05:27 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:26:45 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ namespace ft{
 			Alloc	_alloc;
 			size_t	_size;
 			size_t	_capacity;
+			
+			void	_realloc(){
+				T		*arr;
+				size_t	cap;
+
+				cap = _capacity * 2;
+				_capacity = cap;
+				arr = _alloc.allocate(cap);
+				for (size_t i = 0; i < _size; i++){
+					_alloc.construct(arr + i, _arr[i]);
+					_alloc.destroy(_arr + i);
+				}				
+				_alloc.deallocate(_arr, _size);
+				_arr = arr;
+			}
 			
 		public:
 			typedef T														value_type;
