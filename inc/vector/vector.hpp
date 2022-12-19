@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/18 20:09:08 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:54:56 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 namespace ft{
 	template <class T, class Alloc = std::allocator<T>>
 	class vector{
+		private:
+			T		*_arr;
+			Alloc	_alloc;
+			size_t	_size;
+			size_t	_capacity;
+			
 		public:
 			typedef T											value_type;
 			typedef Alloc										allocator_type;
