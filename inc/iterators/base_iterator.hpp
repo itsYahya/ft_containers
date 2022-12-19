@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:56:35 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/18 15:00:28 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:05:35 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 namespace ft
 {
-	template <class Category, class T, class Distance, class Pointer, class Reference>
+	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
 	struct base_iterator{
 		typedef T			value_type;
 		typedef Pointer		pointer;
