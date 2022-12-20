@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/20 22:15:15 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:17:41 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,25 @@ namespace ft{
 				return (_size == 0);
 			}
 			
+			void	resize(size_type n, value_type value = value_type()){
+				if (n < _size){
+					_size = n;
+					for (; n < _size; n++){
+						_alloc.destroy(_arr + n);
+					}
+				}
+				else if (n < _capacity){
+					for (; _size < n; _size++){
+						_alloc.construct(_arr + _size, value);
+					}
+				}
+				else{
+					_realloc(std::max(_capacity * 2, n));
+					for (; _size < n; _size++){
+						_alloc.construct(_arr + _size, value);
+					}
+				}
+			}
 	};
 }
 
