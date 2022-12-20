@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/20 16:27:07 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:15:15 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ namespace ft{
 			size_t	_size;
 			size_t	_capacity;
 			
-			void	_realloc(){
+			void	_realloc(size_t cap){
 				T		*arr;
-				size_t	cap;
 
-				cap = _capacity * 2;
 				_capacity = cap;
 				arr = _alloc.allocate(cap);
 				for (size_t i = 0; i < _size; i++){
@@ -117,7 +115,7 @@ namespace ft{
 					_construct(value);	
 				}
 				else {
-					_realloc();
+					_realloc(_capacity * 2);
 					_construct(value);
 				}
 			}
