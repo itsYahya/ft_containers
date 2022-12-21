@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/21 13:58:28 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:38:04 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,22 @@ namespace ft{
 				if (n >= _size)
 					throw std::out_of_range("this index is out of range");
 				return (_arr[n]);
+			}
+
+			reference	front(){
+				return (_arr[0]);
+			}
+
+			const_reference	front() const{
+				return (_arr[0]);
+			}
+
+			reference	back(){
+				return (_arr[_size - 1]);
+			}
+
+			const_reference	back() const{
+				return (_arr[_size - 1]);
 			}
 	};
 }
