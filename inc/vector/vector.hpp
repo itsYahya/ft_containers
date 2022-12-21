@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/21 13:23:32 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:41:06 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ namespace ft{
 
 			vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()){
 				_alloc = alloc;
-				_arr = _alloc.alocate(n);
+				_arr = _alloc.allocate(n);
 				_size = n;
 				_capacity = n;
 				
@@ -207,6 +207,7 @@ namespace ft{
 					_realloc(n);
 				}
 			}
+
 	};
 }
 
