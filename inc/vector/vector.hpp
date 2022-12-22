@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/22 23:30:47 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/22 23:31:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ namespace ft{
 					i++;
 				}
 				return (i);
+			}
+			
+			void	_construct(T *arr, size_t n, const size_t &value){
+				size_t	index = 0;
+
+				for (; index < n; index++){
+					_alloc.construct(arr + index, value);
+				}
 			}
 			
 		public:
@@ -323,7 +331,22 @@ namespace ft{
 				return (iterator(_arr + index));
 			}
 
-
+			void	insert(iterator position, size_type n, const value_type &value){
+				pointer	tmp;
+				size_type	index = 0, size = 0;
+				
+				if (n > _capacity)
+					_capacity = std::max(n + _size, _capacity * 2);
+				size = _size;
+				tmp = _alloc.allocate(_capacity);
+				index = _copy_range(begin(), position + 1, tmp);
+				_construct(tmp + index, n, value);
+				_copy_range(position + 1, end(), tmp + index + n);
+				_clear();
+				_alloc.deallocate(tmp, size);
+				_arr = tmp;
+				_size = size + n;
+			}
 	};
 }
 
