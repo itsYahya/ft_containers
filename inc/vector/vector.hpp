@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/22 17:29:48 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:31:13 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,22 @@ namespace ft{
 				}
 			}
 			
+			iterator	insert(iterator position, const value_type &value){
+				pointer		tmp;
+				size_type	n = _capacity, index = 0;
+				
+				if (_size + 1 > _capacity)
+					n = _capacity * 2;
+				tmp = _alloc.allocate(n);
+				index = _copy_range(begin(), position + 1, tmp);
+				_alloc.construct(tmp + index, value);
+				n = _copy_range(position + 1, end(), tmp + index + 1);
+				_clear();
+				_alloc.deallocate(_arr, _size);
+				_arr = tmp;
+				_size = n + index + 1;
+				return (iterator(_arr + index));
+			}
 	};
 }
 
