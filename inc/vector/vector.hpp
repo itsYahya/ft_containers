@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/21 18:17:22 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:34:14 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,28 @@ namespace ft{
 				return (_arr);
 			}
 
+			void	assign(size_type n, const value_type &value){
+				_clear();
+				if (n > _capacity)
+					_realloc(n);
+				_size = n;
+				for (size_type i = 0; i < n; i++){
+					_alloc.construct(_arr + i, value);
+				}
+			}
+
+			template <class Iterator >
+			void	assign(Iterator from, Iterator until){
+				size_type n = ft::difference(from, until);
+				_clear();
+				if (n > _capacity)
+					_realloc(n);
+				_size = n;
+				for (size_type i = 0; i < n; i++){
+					_alloc.construct(_arr + i, *from);
+					from++;
+				}
+			}
 	};
 }
 
