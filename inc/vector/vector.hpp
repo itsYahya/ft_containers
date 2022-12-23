@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/22 23:31:54 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:10:32 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ namespace ft{
 
 				for (; index < n; index++){
 					_alloc.construct(arr + index, value);
+				}
+			}
+
+			void	_construct(ft::iterator<T> from, ft::iterator<T> until, T* arr){
+				for (size_t i = 0; from != until; i++, from++){
+					_alloc.construct(arr + i, *from);
 				}
 			}
 			
@@ -321,9 +327,9 @@ namespace ft{
 				size = _size + 1;
 				if (n == 0) n = 1;
 				tmp = _alloc.allocate(n);
-				index = _copy_range(begin(), position + 1, tmp);
+				index = _copy_range(begin(), position, tmp);
 				_alloc.construct(tmp + index, value);
-				n = _copy_range(position + 1, end(), tmp + index + 1);
+				n = _copy_range(position, end(), tmp + index + 1);
 				_clear();
 				_alloc.deallocate(_arr, size);
 				_arr = tmp;
@@ -335,17 +341,37 @@ namespace ft{
 				pointer	tmp;
 				size_type	index = 0, size = 0;
 				
-				if (n > _capacity)
+				if ((n + _size) > _capacity)
 					_capacity = std::max(n + _size, _capacity * 2);
 				size = _size;
 				tmp = _alloc.allocate(_capacity);
-				index = _copy_range(begin(), position + 1, tmp);
+				index = _copy_range(begin(), position, tmp);
 				_construct(tmp + index, n, value);
-				_copy_range(position + 1, end(), tmp + index + n);
+				_copy_range(position, end(), tmp + index + n);
 				_clear();
 				_alloc.deallocate(tmp, size);
 				_arr = tmp;
 				_size = size + n;
+			}
+
+			void	insert(iterator position, iterator from, iterator until){
+				size_type	n = 0, size = 0, index = 0, cap = 0;
+				pointer		tmp;
+
+				n = ft::difference(from, until);
+				if (_size + n > _capacity)
+					cap = std::max(n + _size, _capacity * 2);
+				size = _size;
+				tmp = _alloc.allocate(cap);
+				if (_capacity)
+					index = _copy_range(begin(), position, tmp);
+				_construct(from, until, tmp + index);
+				_copy_range(position, end(), tmp + index + n);
+				_clear();
+				_alloc.deallocate(_arr, size);
+				_size = size + n;
+				_arr = tmp;
+				_capacity = cap;
 			}
 	};
 }
