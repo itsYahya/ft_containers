@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/23 19:18:25 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/24 16:26:26 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,16 @@ namespace ft{
 				for (size_t i = 0; from != until; i++, from++){
 					_alloc.construct(arr + i, *from);
 				}
+			}
+
+			size_t	_move_rage(ft::iterator<T> position, ft::iterator<T> from, ft::iterator<T> until){
+				size_t i = 0;
+				for (; from != until; from++){
+					*position = *from;
+					position++;
+					i++;
+				}
+				return (i);
 			}
 			
 		public:
