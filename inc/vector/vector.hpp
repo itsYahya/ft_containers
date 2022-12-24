@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/24 17:35:39 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/24 20:49:21 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft{
 					_alloc.construct(arr + i, _arr[i]);
 					_alloc.destroy(_arr + i);
 				}				
-				_alloc.deallocate(_arr, _size);
+				_alloc.deallocate(_arr, _capacity);
 				_arr = arr;
 			}
 
@@ -144,6 +144,11 @@ namespace ft{
 				for (size_type i; i < _size; i++){
 					_alloc.construct(_arr + i, x._arr[i]);
 				}
+			}
+
+			~vector(){
+				_clear();
+				_alloc.deallocate(_arr, _capacity);
 			}
 
 			void	push_back(const value_type &value){
@@ -342,7 +347,7 @@ namespace ft{
 				_alloc.construct(tmp + index, value);
 				_copy_range(position, end(), tmp + index + 1);
 				_clear();
-				_alloc.deallocate(_arr, size);
+				_alloc.deallocate(_arr, _capacity);
 				_arr = tmp;
 				_size = size;
 				_capacity = n;
@@ -362,7 +367,7 @@ namespace ft{
 				_construct(tmp + index, n, value);
 				_copy_range(position, end(), tmp + index + n);
 				_clear();
-				_alloc.deallocate(tmp, size);
+				_alloc.deallocate(tmp, _capacity);
 				_arr = tmp;
 				_size = size + n;
 				_capacity = cap;
@@ -382,7 +387,7 @@ namespace ft{
 				_construct(from, until, tmp + index);
 				_copy_range(position, end(), tmp + index + n);
 				_clear();
-				_alloc.deallocate(_arr, size);
+				_alloc.deallocate(_arr, _capacity);
 				_size = size + n;
 				_arr = tmp;
 				_capacity = cap;
