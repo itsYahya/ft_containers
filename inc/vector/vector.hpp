@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/24 16:28:00 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/24 17:25:00 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,6 +408,24 @@ namespace ft{
 				return (until);
 			}
 			
+			void	swap(vector &v){
+				pointer			arr_swap;
+				size_type		size_swap, cap_swap;
+				allocator_type	alloc_swap;
+				
+				arr_swap = v._arr;
+				size_swap = v._size;
+				cap_swap = v._capacity;
+				alloc_swap = v._alloc;
+				v._arr = this->_arr;
+				v._size = this->_size;
+				v._capacity = this->_capacity;
+				v._alloc = this->_alloc;
+				this->_arr = arr_swap;
+				this->_size = size_swap;
+				this->_capacity = cap_swap;
+				this->_alloc = alloc_swap;
+			}
 	};
 }
 
