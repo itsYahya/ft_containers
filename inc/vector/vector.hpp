@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/25 19:46:40 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:49:15 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,11 +261,6 @@ namespace ft{
 				if (n > _capacity){
 					_realloc(n);
 				}
-			}
-
-			void	shrink_to_fit(){
-				if (_size > 0)
-					_realloc(_size);
 			}
 			
 			reference	operator[](size_type n){
