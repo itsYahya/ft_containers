@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/25 19:24:46 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:32:31 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,15 @@ namespace ft{
 				_alloc.deallocate(_arr, _capacity);
 			}
 
+			vector	&operator=(const vector &v){
+				_clear();
+				if (_capacity < v.size())
+					_realloc(v.size());
+				_construct(v.begin(), v.end(), _arr);
+				_size = v.size();
+				return (*this);
+			}
+			
 			void	push_back(const value_type &value){
 				if (_capacity == 0){
 					_arr = _alloc.allocate(1);
