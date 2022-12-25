@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/25 23:22:01 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:33:16 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -501,6 +501,13 @@ namespace ft{
 	template <class T, class Alloc>
 	bool	operator>=(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
 		return (Lv == Rv || Lv > Rv);
+	}
+	
+	template <class T, class Alloc>
+	void	swap(vector<T, Alloc> &Lv, vector<T, Alloc> &Rv){
+		vector<T, Alloc> tmp(Lv);
+		Lv = Rv;
+		Rv = tmp;
 	}
 }
 
