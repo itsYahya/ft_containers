@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/25 19:53:04 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:22:01 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 #include "../iterators/iterator.hpp"
 #include "../iterators/reverse_iterator.hpp"
+#include "../equal/equal.hpp"
 #include <iostream>
 
 namespace ft{
@@ -445,6 +446,62 @@ namespace ft{
 			}
 			
 	};
+	
+	template <class ITERATOR>
+	bool	_smaller_then(ITERATOR begin1, ITERATOR begin2, ITERATOR end1, ITERATOR end2){
+		while (begin1 != end1 && begin2 != end2){
+			if (*begin2 < *begin1) return (false);
+			else if (*begin1 < *begin2) return (true);
+			begin1++;
+			begin2++;
+		}
+		return (begin2 != end2);
+	}
+
+	template <class ITERATOR>
+	bool	_grater_than(ITERATOR begin1, ITERATOR begin2, ITERATOR end1, ITERATOR end2){
+		while (begin1 != end1 && begin2 != end2)
+		{
+			if (*begin1 < *begin2) return (false);
+			else if (*begin2 < *begin1) return (true);
+			begin1++;
+			begin2++;
+		}
+		return (begin2 == end2 && begin1 != end1);
+	}
+	
+	template <class T, class Alloc>
+	bool	operator==(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		if (Lv.size() != Rv.size() || Lv.capacity() != Rv.capacity()
+				|| !ft::equal(Lv.begin(), Lv.end(), Rv.begin()))
+			return (false);
+		return (true);
+	}
+	
+	template <class T, class Alloc>
+	bool	operator!=(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		return !(Lv == Rv);
+	}
+	
+	template <class T, class Alloc>
+	bool	operator<(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		return (_smaller_then(Lv.begin(), Rv.begin(), Lv.end(), Rv.end()));
+	}
+
+	template <class T, class Alloc>
+	bool	operator>(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		return (_grater_than(Lv.begin(), Rv.begin(), Lv.end(), Rv.end()));
+	}
+	
+	template <class T, class Alloc>
+	bool	operator<=(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		return (Lv == Rv || Lv < Rv);
+	}
+	
+	template <class T, class Alloc>
+	bool	operator>=(const vector<T, Alloc> &Lv, const vector<T, Alloc> &Rv){
+		return (Lv == Rv || Lv > Rv);
+	}
 }
 
 #endif
