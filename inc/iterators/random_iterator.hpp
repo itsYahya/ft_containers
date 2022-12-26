@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterator.hpp                                       :+:      :+:    :+:   */
+/*   random_iterator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:15:36 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:39:48 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,53 @@ namespace ft{
 			reference	operator[](difference_type n) const{
 				return (ptr[n]);
 			}
+
+			pointer	base() const{
+				return (ptr);
+			}
 	};
 	
+	template <class T>
+	random_iterator<T> operator+(typename random_iterator<T>::difference_type n, const random_iterator<T> &it){
+		random_iterator<T> tmp(it - n);
+		return (tmp);
+	}
+
+	template <class T>
+	typename random_iterator<T>::difference_type operator-(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() - Rit.base());
+	}
+	
+	template <class T>
+	bool	operator==(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() == Rit.base());
+	}
+	
+	template <class T>
+	bool	operator!=(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() != Rit.base());
+	}
+	
+	template <class T>
+	bool	operator<(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() < Rit.base());
+	}
+	
+	template <class T>
+	bool	operator<=(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() <= Rit.base());
+	}
+	
+	template <class T>
+	bool	operator>(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() > Rit.base());
+	}
+	
+	template <class T>
+	bool	operator>=(const random_iterator<T> &Lit, const random_iterator<T> &Rit){
+		return (Lit.base() >= Rit.base());
+	}
+
 	template <class T>
 	typename ft::iterator_traits<T>::difference_type difference(T from, T until){
 		typename ft::iterator_traits<T>:: difference_type n = 0;
