@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/25 23:33:16 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:51:30 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <memory>
 #include "../iterators/iterator.hpp"
 #include "../iterators/reverse_iterator.hpp"
-#include "../equal/equal.hpp"
+#include "algorithme.hpp"
+#include "type_traits.hpp"
 #include <iostream>
 
 namespace ft{
@@ -120,7 +121,8 @@ namespace ft{
 			}
 			
 			template <class Iterator>
-			vector(Iterator from, Iterator until, const allocator_type &alloc = allocator_type()){
+			vector(typename ft::enable_if<!ft::is_integral<Iterator>::value, Iterator>::type from,
+					Iterator until, const allocator_type &alloc = allocator_type()){
 				difference_type	n;
 				size_type		i;
 				
