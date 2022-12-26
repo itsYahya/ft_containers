@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/22 13:33:41 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:04:02 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@
 namespace ft{
 	
 	template <class T>
-	class iterator : base_iterator<std::random_access_iterator_tag, T>
+	class iterator
 	{
 		private:
 			T	*ptr;
 
 		public:
-			typedef T								value_type;
-			typedef	ptrdiff_t						difference_type;
-			typedef T*								pointer;
-			typedef T&								reference;
-			typedef std::random_access_iterator_tag	iterator_category;
+			typedef T												value_type;
+			typedef	typename iterator_traits<T*>::difference_type	difference_type;
+			typedef typename iterator_traits<T*>::pointer			pointer;
+			typedef typename iterator_traits<T*>::reference			reference;
+			typedef std::random_access_iterator_tag					iterator_category;
 
 			iterator() {};
 			

@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/18 15:01:01 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:51:46 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@
 
 namespace ft{
 	template <class iterator>
-	class reverse_iterator : public base_iterator < 
-							typename iterator_traits<iterator>::iterator_category,
-							typename iterator_traits<iterator>::value_type,
-							typename iterator_traits<iterator>::difference_type,
-							typename iterator_traits<iterator>::pointer,
-							typename iterator_traits<iterator>::reference>{
+	class reverse_iterator{
 		protected:
 			iterator current;
 		
