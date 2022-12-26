@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:04:02 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:15:36 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 namespace ft{
 	
 	template <class T>
-	class iterator
+	class random_iterator
 	{
 		private:
 			T	*ptr;
@@ -32,26 +32,26 @@ namespace ft{
 			typedef typename iterator_traits<T*>::reference			reference;
 			typedef std::random_access_iterator_tag					iterator_category;
 
-			iterator() {};
+			random_iterator() {};
 			
-			iterator(pointer p){
+			random_iterator(pointer p){
 				ptr = p;
 			}
 			
-			iterator(iterator const &iter){
+			random_iterator(random_iterator const &iter){
 				ptr = iter.ptr;
 			}
 			
-			iterator &operator=(iterator const &copy){
+			random_iterator &operator=(random_iterator const &copy){
 				ptr = copy.ptr;
 				return (*this);
 			}
 
-			bool	operator==(iterator const &iter) const{
+			bool	operator==(random_iterator const &iter) const{
 				return (this->ptr == iter.ptr);
 			}
 
-			bool	operator!=(iterator const &iter) const{
+			bool	operator!=(random_iterator const &iter) const{
 				return (this->ptr != iter.ptr);
 			}
 
@@ -63,61 +63,61 @@ namespace ft{
 				return (ptr);
 			}
 			
-			iterator	&operator++(){
+			random_iterator	&operator++(){
 				ptr++;
 				return (*this);
 			}
 
-			iterator	operator++(int){
-				iterator	iter(ptr);
+			random_iterator	operator++(int){
+				random_iterator	iter(ptr);
 				ptr++;
 				return (iter);
 			}
 			
-			iterator	&operator--(){
+			random_iterator	&operator--(){
 				ptr--;
 				return (*this);
 			}
 
-			iterator	operator--(int){
-				iterator	iter(ptr);
+			random_iterator	operator--(int){
+				random_iterator	iter(ptr);
 				ptr--;
 				return (iter);
 			}
 			
-			iterator	&operator+=(difference_type n){
+			random_iterator	&operator+=(difference_type n){
 				ptr += n;
 				return (*this);
 			}
 			
-			iterator	&operator-=(difference_type n){
+			random_iterator	&operator-=(difference_type n){
 				ptr -= n;
 				return (*this);
 			}
 			
-			iterator	operator+(difference_type n) const{
-				iterator iter(ptr + n);
+			random_iterator	operator+(difference_type n) const{
+				random_iterator iter(ptr + n);
 				return (iter);
 			}
 			
-			iterator	operator-(difference_type n) const{
-				iterator	iter(ptr - n);
+			random_iterator	operator-(difference_type n) const{
+				random_iterator	iter(ptr - n);
 				return (iter);
 			}
 			
-			bool	operator<(iterator const &iter) const{
+			bool	operator<(random_iterator const &iter) const{
 				return (iter.ptr < ptr);
 			}
 
-			bool	operator>(iterator const &iter) const{
+			bool	operator>(random_iterator const &iter) const{
 				return (iter.ptr > ptr);
 			}
 			
-			bool	operator<=(iterator const &iter) const{
+			bool	operator<=(random_iterator const &iter) const{
 				return (iter.ptr <= ptr);
 			}
 
-			bool	operator>=(iterator const &iter) const{
+			bool	operator>=(random_iterator const &iter) const{
 				return (iter.ptr >= ptr);
 			}
 

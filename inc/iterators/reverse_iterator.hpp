@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 17:51:46 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:16:17 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define REVERSE_ITERATOR_HPP
 
 #include "iterator_traits.hpp"
-#include "base_iterator.hpp"
 
 namespace ft{
 	template <class iterator>

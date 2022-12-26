@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:02:18 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:16:38 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define VECTOR_HPP
 
 #include <memory>
-#include "../iterators/iterator.hpp"
-#include "../iterators/reverse_iterator.hpp"
+#include "random_iterator.hpp"
+#include "reverse_iterator.hpp"
 #include "algorithme.hpp"
 #include "type_traits.hpp"
 #include <iostream>
@@ -54,7 +54,7 @@ namespace ft{
 				_size = 0;
 			}
 			
-			size_t	_copy_range(ft::iterator<T> from, ft::iterator<T> until, T *arr){
+			size_t	_copy_range(ft::random_iterator<T> from, ft::random_iterator<T> until, T *arr){
 				size_t	i = 0;
 				
 				for (; from != until; from++){
@@ -72,13 +72,13 @@ namespace ft{
 				}
 			}
 
-			void	_construct(ft::iterator<T> from, ft::iterator<T> until, T* arr){
+			void	_construct(ft::random_iterator<T> from, ft::random_iterator<T> until, T* arr){
 				for (size_t i = 0; from != until; i++, from++){
 					_alloc.construct(arr + i, *from);
 				}
 			}
 
-			size_t	_move_rage(ft::iterator<T> position, ft::iterator<T> from, ft::iterator<T> until){
+			size_t	_move_rage(ft::random_iterator<T> position, ft::random_iterator<T> from, ft::random_iterator<T> until){
 				size_t i = 0;
 				for (; from != until; from++){
 					*position = *from;
@@ -96,8 +96,8 @@ namespace ft{
 			typedef typename allocator_type::pointer 						pointer;
 			typedef typename allocator_type::const_pointer 					const_pointer;
 			typedef typename allocator_type::size_type 						size_type;
-			typedef ft::iterator<value_type>								iterator;
-			typedef ft::iterator<const value_type>							const_iterator;
+			typedef ft::random_iterator<value_type>							iterator;
+			typedef ft::random_iterator<const value_type>					const_iterator;
 			typedef ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
