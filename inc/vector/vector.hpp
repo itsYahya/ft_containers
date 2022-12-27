@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:16:38 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:54:14 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ namespace ft{
 				}
 			}
 
-			void	_construct(ft::random_iterator<T> from, ft::random_iterator<T> until, T* arr){
+			void	_construct_rang(ft::random_iterator<const T> from, ft::random_iterator<const T> until, T* arr){
 				for (size_t i = 0; from != until; i++, from++){
 					_alloc.construct(arr + i, *from);
 				}
@@ -158,7 +158,7 @@ namespace ft{
 				_clear();
 				if (_capacity < v.size())
 					_realloc(v.size());
-				_construct(v.begin(), v.end(), _arr);
+				_construct_rang(v.begin(), v.end(), _arr);
 				_size = v.size();
 				return (*this);
 			}
