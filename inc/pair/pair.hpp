@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:43:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/27 14:09:11 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:08:41 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ namespace ft{
 		pair(const pair<U, V> &p) : first(p.first), second(p.second) {};
 		
 		pair(const first_type &f, const second_type &s) : first(f), second(s) {};
+
+		pair	&operator=(const pair &pair){
+			this->first = pair.first;
+			this->second = pair.second;
+			return (*this);
+		}
 	};
 }
 
