@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:43:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/27 15:56:36 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:01:44 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ namespace ft{
 	template <class T1, class T2>
 	bool	operator>=(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
 		return (p1 > p2 || p1 == p2);
+	}
+
+	template <class T1, class T2>
+	ft::pair<T1, T2>	make_pair(T1 first, T2 second){
+		return (ft::pair<T1, T2>(first, second));
 	}
 }
 
