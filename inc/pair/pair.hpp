@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:43:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/27 15:08:41 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:56:36 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,36 @@ namespace ft{
 			return (*this);
 		}
 	};
+
+	template <class T1, class T2>
+	bool	operator==(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return (p1.first == p2.first && p1.second == p2.second);
+	}
+	
+	template <class T1, class T2>
+	bool	operator!=(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return !(p1 == p2);
+	}
+	
+	template <class T1, class T2>
+	bool	operator<(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return (p1.first < p2.first || (p1.first == p2.first && p1.second < p2.second));
+	}
+
+	template <class T1, class T2>
+	bool	operator<=(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return (p1 < p2 || p1 == p2);
+	}
+
+	template <class T1, class T2>
+	bool	operator>(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return (p1.first > p2.first || (p1.first == p2.first && p1.second > p2.second));
+	}
+
+	template <class T1, class T2>
+	bool	operator>=(const ft::pair<T1, T2> &p1, const ft::pair<T1, T2> &p2){
+		return (p1 > p2 || p1 == p2);
+	}
 }
 
 #endif
