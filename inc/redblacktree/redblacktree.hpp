@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/31 20:50:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/31 20:51:20 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,18 @@ namespace ft{
 			Node(const value_type &data, pointer parent = nullptr, bool color = red)
 				: data(data), color(color), right(nullptr), left(nullptr), parent(parent) {}
 			
-			
+			static pointer	minimum(pointer node){
+				while (!node->right->is_nil())
+					node = node->right;
+				return (node);
+			}
+
+			static pointer	maximum(pointer node){
+				while (!node->left->is_nil())
+					node = node->left;
+				return (node)
+			}
+
 			bool	is_nil(){
 				return (this != nullptr && this->right == nullptr && this->left == nullptr);
 			}
