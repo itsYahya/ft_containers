@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/31 20:57:39 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/31 22:43:45 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,19 @@ namespace ft{
 				return (y);
 			}
 			
+			static pointer	predecessor(pointer node){
+				pointer	y;
+
+				if (!node->left->is_nil())
+					return (maximum(node->left));
+				y = node->parent;
+				while (!y->is_nil() && y->left = node){
+					node = y;
+					y = y->parent;
+				}
+				return (y);
+			}
+
 			bool	is_nil(){
 				return (this != nullptr && this->right == nullptr && this->left == nullptr);
 			}
