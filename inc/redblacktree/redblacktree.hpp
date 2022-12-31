@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/31 22:43:45 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/31 23:00:23 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ namespace ft{
 			bool	is_nil(){
 				return (this != nullptr && this->right == nullptr && this->left == nullptr);
 			}
-			
+			bool	is_red() { return (this->color == red); }
+			bool	is_black() { return (this->color == black); }
 	};
 }
 
