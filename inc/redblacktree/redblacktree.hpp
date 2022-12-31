@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/31 23:00:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2022/12/31 23:11:24 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,20 @@ namespace ft{
 				}
 				return (y);
 			}
+
+			template <class Comp>
+			static pointer	find(const pointer root, value_type &value, Comp comp = Comp()){
+				while (!root->is_nil()){
+					if (comp(root->data, value))
+						root = root->right;
+					else if (comp(value, root->data))
+						root = root->left;
+					else
+						return (root);
+				}
+				return (root);
+			}
+			
 
 			bool	is_nil(){
 				return (this != nullptr && this->right == nullptr && this->left == nullptr);
