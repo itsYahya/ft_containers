@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 16:58:19 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 16:59:12 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,22 @@ namespace ft{
 				return (_size == 0);
 			}
 
+			void	insert(const value_type &value){
+				pointer	node;
+
+				node = _make_node(value);
+				if (_root == _nil){
+					_root = node;
+					std::cout << "hello there we are here " << std::endl;
+				}
+				else {
+					std::cout << "the root is already not nil node" << std::endl;
+				}
+				_size++;
+				_root->color = black;
+			}
+
+			
 	};
 }
 
