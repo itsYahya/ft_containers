@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 04:03:21 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 04:25:17 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft{
 			static pointer	maximum(pointer node){
 				while (!node->left->is_nil())
 					node = node->left;
-				return (node)
+				return (node);
 			}
 
 			static pointer	successor(pointer node){
@@ -65,7 +65,7 @@ namespace ft{
 				if (!node->left->is_nil())
 					return (maximum(node->left));
 				y = node->parent;
-				while (!y->is_nil() && y->left = node){
+				while (!y->is_nil() && y->left == node){
 					node = y;
 					y = y->parent;
 				}
@@ -117,7 +117,7 @@ namespace ft{
 			allocator_node	_alloc;
 
 		public:
-			RedBlackTree(const Comp &comp): _size(0), _comp(comp()){
+			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
 				_alloc.construct(_nil, value_type());
 				_end = _alloc.allocate(1);
@@ -140,6 +140,14 @@ namespace ft{
 				
 				_root->parent = nullptr;
 				_end->left = nullptr;
+			}
+
+			bool	empty() const {
+				return (_size == 0);
+			}
+
+			bool	empty(){
+				return (_size == 0);
 			}
 	};
 }
