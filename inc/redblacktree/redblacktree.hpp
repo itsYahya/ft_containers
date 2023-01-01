@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 16:59:12 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:01:53 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,23 @@ namespace ft{
 				return (node);
 			}
 
+			void	_print(pointer node, std::string s, bool last = true){
+				if (!node->is_nil()){
+					std::cout << s;
+					if (last){
+						std::cout << "R----";
+						s += "    ";
+					}else{
+						std::cout << "L----";
+						s += "|    ";
+					}
+					std::string color = node->is_red() ? "red" : "black";
+					std::cout << node->data << "(" << color << ")" << std::endl;
+					_print(node->left, s, false);
+					_print(node->right, s, true);
+				}
+			}
+
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -174,8 +191,10 @@ namespace ft{
 				_size++;
 				_root->color = black;
 			}
-
 			
+			void	print(){
+				_print(_root, std::string());
+			}
 	};
 }
 
