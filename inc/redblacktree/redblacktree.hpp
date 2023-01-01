@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/31 23:11:24 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 03:52:12 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define black 0
 
 namespace ft{
+	
 	template <class T>
 	class Node{
 		public:
@@ -90,6 +91,32 @@ namespace ft{
 			}
 			bool	is_red() { return (this->color == red); }
 			bool	is_black() { return (this->color == black); }
+	};
+
+	template <class T, class Comp, class Alloc>
+	class RedBlackTree{
+		public:
+			typedef T															value_type;
+			typedef Node<T>														node_type;
+			typedef Alloc														allocator_type;
+			typedef typename allocator_type::template rebind<node_type>::other	allocator_node;
+			typedef typename allocator_node::pointer							pointer;
+			typedef typename allocator_node::const_pointer						const_pointer;
+			typedef typename allocator_node::reference							reference;
+			typedef typename allocator_node::const_reference					const_reference;
+			typedef typename allocator_node::difference_type					difference_type;
+			typedef typename allocator_node::size_type							size_type;
+			typedef RedBlackTree<value_type, Comp, allocator_node>				rbtree;
+		
+		private:
+			pointer			_root;
+			size_type		_size;
+			pointer			_nil;
+			pointer			_end;
+			Comp			_comp;
+			allocator_node	_alloc;
+
+		
 	};
 }
 
