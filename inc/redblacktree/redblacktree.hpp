@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 03:52:12 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 03:56:09 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,17 @@ namespace ft{
 			Comp			_comp;
 			allocator_node	_alloc;
 
-		
+		public:
+			RedBlackTree(const Comp &comp): _size(0), _comp(comp()){
+				_nil = _alloc.allocate(1);
+				_alloc.construct(_nil, value_type());
+				_end = _alloc.allocate(1);
+				_alloc.construct(_end, value_type());
+				_nil->color = black;
+				_root = _nil;
+			}
+			
+			
 	};
 }
 
