@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 17:01:53 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:47:22 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #define red 1
 #define black 0
+
+#define	LEFT 1
+#define RIGHT 0
 
 namespace ft{
 	
@@ -143,6 +146,24 @@ namespace ft{
 				}
 			}
 
+			pointer	_get_parent_isertion(pointer tree, pointer node, bool &side){
+				pointer parent;
+
+				parent = tree;
+				while (!tree->is_nil()){
+					parent = tree;
+					if (_comp(node->data, tree->data)){
+						tree = tree->left;
+						side = LEFT;
+					}
+					else{
+						tree = tree->right;
+						side = RIGHT;
+					}
+				}
+				return (parent);
+			}
+			
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -176,17 +197,23 @@ namespace ft{
 			bool	empty(){
 				return (_size == 0);
 			}
-
+			
 			void	insert(const value_type &value){
-				pointer	node;
-
+				pointer	node, parent;
+				bool	side;
+				
 				node = _make_node(value);
 				if (_root == _nil){
 					_root = node;
-					std::cout << "hello there we are here " << std::endl;
 				}
 				else {
-					std::cout << "the root is already not nil node" << std::endl;
+					parent = _get_parent_isertion(_root, node, side);
+					if (side == RIGHT)
+						parent->right = node;
+					else
+						parent->left = node;
+					if (parent->is_red())
+						std::cout << "violation by : " << node->data << std::endl;
 				}
 				_size++;
 				_root->color = black;
