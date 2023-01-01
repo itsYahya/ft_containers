@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 17:47:22 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:48:56 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,19 @@ namespace ft{
 			bool	is_nil(){
 				return (this != nullptr && this->right == nullptr && this->left == nullptr);
 			}
-			bool	is_red() { return (this->color == red); }
-			bool	is_black() { return (this->color == black); }
+			bool	is_red() { return (this != nullptr && this->color == red); }
+			bool	is_black() { return (this != nullptr && this->color == black); }
+			bool	is_left() { return (this != nullptr && this == parent->left); }
+			bool	is_right() { return (this != nullptr && this == parent->left); }
+			pointer	get_grand_pa() { return (this->parent ? this->parent->parent : nullptr); }
+			pointer	get_uncle() {
+				pointer	grand_pa;
+
+				grand_pa = get_grand_pa();
+				if (grand_pa->right == this)
+					return (grand_pa->left);
+				return (grand_pa->right);
+			}
 	};
 
 	template <class T, class Comp, class Alloc>
@@ -163,7 +174,7 @@ namespace ft{
 				}
 				return (parent);
 			}
-			
+				
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -208,12 +219,14 @@ namespace ft{
 				}
 				else {
 					parent = _get_parent_isertion(_root, node, side);
+					node->parent = parent;
 					if (side == RIGHT)
 						parent->right = node;
 					else
 						parent->left = node;
-					if (parent->is_red())
-						std::cout << "violation by : " << node->data << std::endl;
+					if (parent->is_red()){
+						_maintain_after_insertion(node);
+					}
 				}
 				_size++;
 				_root->color = black;
