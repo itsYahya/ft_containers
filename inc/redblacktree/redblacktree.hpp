@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/02 01:01:03 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/02 01:22:22 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,28 @@ namespace ft{
 				tree->parent = child;
 			}
 				
+			void	_right_rotation(pointer tree){
+				pointer	child, parent;
+
+				parent = tree->parent;
+				child = tree->left;
+				if (!child->right->is_nil()){
+					tree->left = child->right;
+					child->right->parent = tree;
+				}
+				else
+					tree->left = _nil;
+				if (parent != nullptr){
+					if (tree->is_right())
+						parent->right = child;
+					else
+						parent->left = child;
+				}else
+					_root = child;
+				child->right = tree;
+				tree->parent = child;
+			}
+			
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -278,7 +300,7 @@ namespace ft{
 			}
 
 			void	rotation(){
-				_left_rotation(_root->left);
+				_right_rotation(_root);
 			}
 	};
 }
