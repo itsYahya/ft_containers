@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/01 22:50:38 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/02 01:01:03 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ namespace ft{
 			bool	is_red() { return (this != nullptr && this->color == red); }
 			bool	is_black() { return (this != nullptr && this->color == black); }
 			bool	is_left() { return (this != nullptr && this == parent->left); }
-			bool	is_right() { return (this != nullptr && this == parent->left); }
+			bool	is_right() { return (this != nullptr && this == parent->right); }
 			pointer	get_grand_pa() { return (this->parent ? this->parent->parent : nullptr); }
 			pointer	get_uncle() {
 				pointer	grand_pa;
@@ -191,7 +191,30 @@ namespace ft{
 						node = grand_pa;
 					}
 				}
-			}	
+			}
+			
+			void	_left_rotation(pointer tree){
+				pointer child, parent;
+
+				parent = tree->parent;
+				child = tree->right;
+				if (!child->left->is_nil()){
+					tree->right = child->left;
+					child->left->parent = tree;
+				}
+				else
+					tree->right = _nil;
+				if (parent != nullptr){
+					if (tree->is_right())
+						parent->right = child;
+					else
+						parent->left = child;
+				}
+				else
+					_root = child;
+				child->left = tree;
+				tree->parent = child;
+			}
 				
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
@@ -252,6 +275,10 @@ namespace ft{
 			
 			void	print(){
 				_print(_root, std::string());
+			}
+
+			void	rotation(){
+				_left_rotation(_root->left);
 			}
 	};
 }
