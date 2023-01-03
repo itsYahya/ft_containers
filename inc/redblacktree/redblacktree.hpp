@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/03 22:54:30 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/03 23:41:17 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,6 +285,22 @@ namespace ft{
 				node->parent = parent;
 			}
 
+			pointer	search(const value_type &value){
+				pointer	tree;
+
+				tree = _root;
+				while (!tree->is_nil())
+				{
+					if (_comp(tree->data, value))
+						tree = tree->right;
+					else if (_comp(value, tree->data))
+						tree = tree->left;
+					else
+						return (tree);
+				}
+				return (tree);
+			}
+			
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
