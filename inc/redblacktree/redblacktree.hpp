@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/03 05:34:31 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/03 05:39:52 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,10 +326,6 @@ namespace ft{
 			
 			void	print(){
 				_print(_root, std::string());
-			}
-
-			void	rotation(){
-				_left_rotation(_root->left);
 			}
 
 			size_type	size() const {
