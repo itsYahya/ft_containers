@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/02 01:22:22 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/03 05:33:31 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ namespace ft{
 				pointer	grand_pa;
 
 				grand_pa = get_grand_pa();
-				if (grand_pa->right == this)
+				if (grand_pa != nullptr && grand_pa->right == this->parent)
 					return (grand_pa->left);
 				return (grand_pa->right);
 			}
@@ -175,20 +175,53 @@ namespace ft{
 				return (parent);
 			}
 			
+			pointer	_left_side_fix(pointer node, pointer parent, pointer grand_pa, pointer uncle){
+				if (uncle->is_red()){
+					uncle->color = black;
+					parent->color = black;
+					grand_pa->color = red;
+					node = grand_pa;
+				}else if (node->is_right()){
+					node = node->parent;
+					_left_rotation(node);
+				}else {
+					parent->color = black;
+					grand_pa->color = red;
+					_right_rotation(grand_pa);
+				}
+				return (node);
+			}
+
+			pointer _right_side_fix(pointer node, pointer parent, pointer grand_pa, pointer uncle){
+				if (grand_pa->left->is_red()){
+					parent->color = black;
+					uncle->color = black;
+					grand_pa->color = red;
+					node = grand_pa;
+				}else{
+					if (node->is_left()){
+						node = parent;
+						_right_rotation(node);
+					}
+					grand_pa = node->get_grand_pa();
+					node->parent->color = black;
+					grand_pa->color = red;
+					_left_rotation(grand_pa);
+				}
+				return (node);
+			}
+			
 			void	_maintain_after_insertion(pointer node){
 				pointer	parent, grand_pa, uncle;
-
-				while (node->parent->is_red()){
+				
+				while (node->parent && node->parent->is_red()){
 					parent = node->parent;
 					grand_pa = node->get_grand_pa();
+					uncle = node->get_uncle();
 					if (parent->is_left()){
-						uncle = node->get_uncle();
-						if (uncle->is_red()){
-							uncle->color = black;
-							parent->color = black;
-							grand_pa->color = red;
-						}
-						node = grand_pa;
+						node = _left_side_fix(node, parent, grand_pa, uncle);
+					}else {
+						node = _right_side_fix(node, parent, grand_pa, uncle);
 					}
 				}
 			}
@@ -214,6 +247,7 @@ namespace ft{
 					_root = child;
 				child->left = tree;
 				tree->parent = child;
+				child->parent = parent;
 			}
 				
 			void	_right_rotation(pointer tree){
@@ -236,6 +270,7 @@ namespace ft{
 					_root = child;
 				child->right = tree;
 				tree->parent = child;
+				child->parent = parent;
 			}
 			
 		public:
@@ -267,10 +302,6 @@ namespace ft{
 			bool	empty() const {
 				return (_size == 0);
 			}
-
-			bool	empty(){
-				return (_size == 0);
-			}
 			
 			void	insert(const value_type &value){
 				pointer	node, parent;
@@ -287,9 +318,7 @@ namespace ft{
 						parent->right = node;
 					else
 						parent->left = node;
-					if (parent->is_red()){
-						_maintain_after_insertion(node);
-					}
+					_maintain_after_insertion(node);
 				}
 				_size++;
 				_root->color = black;
@@ -300,7 +329,7 @@ namespace ft{
 			}
 
 			void	rotation(){
-				_right_rotation(_root);
+				_left_rotation(_root->left);
 			}
 	};
 }
