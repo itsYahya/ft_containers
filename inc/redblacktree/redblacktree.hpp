@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/03 23:41:17 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/04 02:08:14 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ namespace ft{
 				: data(data), color(color), right(nullptr), left(nullptr), parent(parent) {}
 			
 			static pointer	minimum(pointer node){
-				while (!node->right->is_nil())
-					node = node->right;
+				while (!node->left->is_nil())
+					node = node->left;
 				return (node);
 			}
 
 			static pointer	maximum(pointer node){
-				while (!node->left->is_nil())
-					node = node->left;
+				while (!node->right->is_nil())
+					node = node->right;
 				return (node);
 			}
 
@@ -285,7 +285,7 @@ namespace ft{
 				node->parent = parent;
 			}
 
-			pointer	search(const value_type &value){
+			pointer	_search(const value_type &value){
 				pointer	tree;
 
 				tree = _root;
@@ -300,7 +300,19 @@ namespace ft{
 				}
 				return (tree);
 			}
-			
+
+			void	__transplant_v2(pointer tree, pointer node, pointer min, pointer node_d, bool side){
+				_transplant(tree, node);
+				if (side == LEFT){
+					min->left = node_d->left;
+					min->left->parent = min;
+				}
+				else{
+					min->right = node_d->right;
+					min->right->parent = min;
+				}
+			}
+					
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -356,6 +368,30 @@ namespace ft{
 				_print(_root, std::string());
 			}
 
+			void	delete_node(const value_type &value){
+				pointer node, child, min;
+				bool	color;
+
+				node = _search(value);
+				if (node->is_nil()) return ;
+				color = node->color;
+				if (node->left->is_nil() || node->right->is_nil()){
+					if (node->left->is_nil()) child = node->right;
+					else child = node->left;
+					_transplant(node, child);
+				} else {
+					min = node_type::minimum(node->right);
+					color = min->color;
+					if (min->parent == node) min->right->parent = min;
+					else __transplant_v2(min, min->right, min, node, RIGHT);
+					__transplant_v2(node, min, min, node, LEFT);
+					min->color = color;
+				}
+				_size--;
+				_alloc.destroy(node);
+				_alloc.deallocate(node, 1);
+			}
+			
 			size_type	size() const {
 				return (_size);
 			}
