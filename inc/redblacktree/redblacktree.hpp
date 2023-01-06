@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/04 02:08:14 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:34:05 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,14 @@ namespace ft{
 				pointer	grand_pa;
 
 				grand_pa = get_grand_pa();
-				if (grand_pa != nullptr && grand_pa->right == this->parent)
-					return (grand_pa->left);
+				if (grand_pa == nullptr) return (nullptr);
+				if (this->parent->is_right()) return (grand_pa->left);
 				return (grand_pa->right);
+			}
+			pointer	get_sibling(){
+				if (this->is_right())
+					return (parent->left);
+				return (parent->right);
 			}
 	};
 
@@ -312,6 +317,64 @@ namespace ft{
 					min->right->parent = min;
 				}
 			}
+			
+			void	_maintain_after_deletion(pointer node){
+				pointer sib;
+				
+				while (node != _root && node->is_black()){
+					if (node->is_left()){
+						sib = node->parent->right;
+						if (sib->is_red()){
+							sib->color = black;
+							node->parent->color = red;
+							_left_rotation(node->parent);
+							sib = node->parent->right;
+						}
+						if (sib->right->is_black() && sib->left->is_black()){
+							sib->color = red;
+							node = node->parent;
+						}else {
+							if (sib->right->is_black()){
+								sib->left->color = black;
+								sib->color = red;
+								_right_rotation(sib);
+								sib = node->parent->right;
+							}
+							sib->color = node->parent->color;
+							node->parent->color = black;
+							sib->right->color = black;
+							_left_rotation(node->parent);
+							node = _root;
+						}
+					}
+					else{
+						sib = node->parent->left;
+						if (sib->is_red()){
+							sib->color = black;
+							node->parent->color = red;
+							_right_rotation(node->parent);
+							sib = node->parent->left;
+						}
+						if (sib->right->is_black() && sib->left->is_black()){
+							sib->color = red;
+							node = node->parent;
+						}else {
+							if (sib->left->is_black()){
+								sib->right->color = black;
+								sib->color = red;
+								_left_rotation(sib);
+								sib = node->parent->left;
+							}
+							sib->color = node->parent->color;
+							node->parent->color = black;
+							sib->left->color = black;
+							_right_rotation(node->parent);
+							node = _root;
+						}
+					}
+				}
+				node->color = black;
+			}
 					
 		public:
 			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
@@ -382,14 +445,17 @@ namespace ft{
 				} else {
 					min = node_type::minimum(node->right);
 					color = min->color;
+					child = min->right;
 					if (min->parent == node) min->right->parent = min;
 					else __transplant_v2(min, min->right, min, node, RIGHT);
 					__transplant_v2(node, min, min, node, LEFT);
-					min->color = color;
+					min->color = node->color;
 				}
 				_size--;
 				_alloc.destroy(node);
 				_alloc.deallocate(node, 1);
+				if (color == black)
+					_maintain_after_deletion(child);
 			}
 			
 			size_type	size() const {
