@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 00:36:22 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 00:40:11 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ namespace ft{
 			
 			bool	operator!=(const iterator_type &iter){
 				return (iter.ptr != ptr);
+			}
+
+			reference	operator*() const{
+				return (*ptr);
+			}
+
+			pointer		operator->() const{
+				return (ptr);
 			}
 	};
 }
