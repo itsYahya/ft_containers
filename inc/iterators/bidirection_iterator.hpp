@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 00:31:38 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 00:36:22 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ namespace ft{
 			iterator_type	&operator=(const iterator_type &iter){
 				this->ptr = iter.ptr;
 				return (*this);
+			}
+			
+			bool	operator==(const iterator_type &iter){
+				return (iter.ptr == ptr);
+			}
+			
+			bool	operator!=(const iterator_type &iter){
+				return (iter.ptr != ptr);
 			}
 	};
 }
