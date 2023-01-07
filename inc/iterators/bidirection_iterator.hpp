@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 00:26:08 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 00:31:38 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ namespace ft{
 			typedef typename iterator_traits<T*>::pointer			pointer;
 			typedef typename iterator_traits<T*>::reference			reference;
 			typedef std::bidirectional_iterator_tag					iterator_category;
+			typedef bidirection_iterator<T>							iterator_type;
 
 		private:
 			pointer	ptr;
@@ -36,10 +37,14 @@ namespace ft{
 				ptr = p;
 			}
 
-			bidirection_iterator(const bidirection_iterator &iter){
+			bidirection_iterator(const iterator_type &iter){
 				ptr = iter.ptr;
 			}
 			
+			iterator_type	&operator=(const iterator_type &iter){
+				this->ptr = iter.ptr;
+				return (*this);
+			}
 	};
 }
 
