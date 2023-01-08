@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:48:28 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/19 16:58:00 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 00:05:52 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ITERATOR_TRAITS_HPP
 
 #include <cstddef>
+#include <iterator>
 
 namespace ft{
 	template <class iter>
