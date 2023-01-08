@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 03:55:20 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:05:25 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ namespace ft{
 		return (stream);
 	}
 	
-	template <class T, class Comp, class Alloc>
+	template <class T, class Comp = std::less<T>, class Alloc = std::allocator<T> >
 	class RedBlackTree{
 		public:
 			typedef T															value_type;
@@ -392,7 +392,7 @@ namespace ft{
 			}
 					
 		public:
-			RedBlackTree(const Comp &comp): _size(0), _comp(comp){
+			RedBlackTree(const Comp &comp = Comp()): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
 				_alloc.construct(_nil, value_type());
 				_end = _alloc.allocate(1);
