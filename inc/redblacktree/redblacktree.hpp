@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 17:05:25 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:33:40 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,7 +390,24 @@ namespace ft{
 				}
 				node->color = black;
 			}
-					
+
+			
+			void	_set_end(){
+				if (_root == _nil)
+					return ;
+				
+				_root->parent = _end;
+				_end->left = _root;
+			}
+			
+			void	_unset_end(){
+				if (_root == _nil)
+					return ;
+				
+				_root->parent = nullptr;
+				_end->left = nullptr;
+			}
+
 		public:
 			RedBlackTree(const Comp &comp = Comp()): _size(0), _comp(comp){
 				_nil = _alloc.allocate(1);
@@ -399,22 +416,6 @@ namespace ft{
 				_alloc.construct(_end, value_type());
 				_nil->color = black;
 				_root = _nil;
-			}
-			
-			void	set_end(){
-				if (_root == _nil)
-					return ;
-				
-				_root->parent = _end;
-				_end->left = _root;
-			}
-			
-			void	unset_end(){
-				if (_root == _nil)
-					return ;
-				
-				_root->parent = nullptr;
-				_end->left = nullptr;
 			}
 
 			bool	empty() const {
@@ -434,7 +435,7 @@ namespace ft{
 				pointer	node, parent;
 				bool	side;
 				
-				unset_end();
+				_unset_end();
 				node = _make_node(value);
 				if (_root == _nil){
 					_root = node;
@@ -450,7 +451,7 @@ namespace ft{
 				}
 				_size++;
 				_root->color = black;
-				set_end();
+				_set_end();
 			}
 			
 			void	print(){
@@ -461,7 +462,7 @@ namespace ft{
 				pointer node, child, min;
 				bool	color;
 
-				unset_end();
+				_unset_end();
 				node = _search(value);
 				if (node->is_nil()) return ;
 				color = node->color;
@@ -483,7 +484,7 @@ namespace ft{
 				_alloc.deallocate(node, 1);
 				if (color == black)
 					_maintain_after_deletion(child);
-				set_end();
+				_set_end();
 			}
 			
 			size_type	size() const {
