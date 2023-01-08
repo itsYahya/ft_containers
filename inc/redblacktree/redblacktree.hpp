@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 03:50:05 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 03:50:46 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,11 @@ namespace ft{
 			}
 	};
 	
-
+	template <class T>
+	std::ostream	&operator<<(std::ostream &stream, Node<T> &node){
+		stream << node.data;
+		return (stream);
+	}
 	
 	template <class T, class Comp, class Alloc>
 	class RedBlackTree{
