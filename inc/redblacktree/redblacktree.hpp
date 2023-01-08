@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/06 20:34:05 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 03:50:05 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 #define	LEFT 1
 #define RIGHT 0
+
+#include "bidirection_iterator.hpp"
+#include "reverse_iterator.hpp"
+#include <iostream>
 
 namespace ft{
 	
@@ -111,7 +115,9 @@ namespace ft{
 				return (parent->right);
 			}
 	};
+	
 
+	
 	template <class T, class Comp, class Alloc>
 	class RedBlackTree{
 		public:
@@ -126,6 +132,11 @@ namespace ft{
 			typedef typename allocator_node::difference_type					difference_type;
 			typedef typename allocator_node::size_type							size_type;
 			typedef RedBlackTree<value_type, Comp, allocator_node>				rbtree;
+			typedef ft::bidirection_iterator<node_type>							iterator;
+			typedef ft::bidirection_iterator<const node_type>					const_iterator;
+			typedef ft::reverse_iterator<iterator>								reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
+			
 		
 		private:
 			pointer			_root;
@@ -405,6 +416,7 @@ namespace ft{
 			bool	empty() const {
 				return (_size == 0);
 			}
+			
 			
 			void	insert(const value_type &value){
 				pointer	node, parent;
