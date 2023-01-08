@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 02:00:42 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 02:05:31 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ namespace ft{
 			pointer	ptr;
 		
 		public:
-			bidirection_iterator() {}
+			iterator_type() : ptr(nullptr) {}
 			
-			bidirection_iterator(pointer p){
-				ptr = p;
-			}
+			iterator_type(pointer p) : ptr(p) {}
 
-			bidirection_iterator(const iterator_type &iter){
-				ptr = iter.ptr;
-			}
+			iterator_type(const iterator_type &iter) : ptr(iter.ptr) {}
+			
+			~iterator_type() {};
 			
 			iterator_type	&operator=(const iterator_type &iter){
 				this->ptr = iter.ptr;
