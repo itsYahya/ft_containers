@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 03:50:46 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 03:55:20 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -421,11 +421,20 @@ namespace ft{
 				return (_size == 0);
 			}
 			
+			iterator	begin() const{
+				iterator iter(_size ? node_type::minimum(_root) : _end);
+				return (iter);
+			}
 			
+			iterator	end() const{
+				return (_end);
+			}
+
 			void	insert(const value_type &value){
 				pointer	node, parent;
 				bool	side;
 				
+				unset_end();
 				node = _make_node(value);
 				if (_root == _nil){
 					_root = node;
@@ -441,6 +450,7 @@ namespace ft{
 				}
 				_size++;
 				_root->color = black;
+				set_end();
 			}
 			
 			void	print(){
@@ -451,6 +461,7 @@ namespace ft{
 				pointer node, child, min;
 				bool	color;
 
+				unset_end();
 				node = _search(value);
 				if (node->is_nil()) return ;
 				color = node->color;
@@ -472,6 +483,7 @@ namespace ft{
 				_alloc.deallocate(node, 1);
 				if (color == black)
 					_maintain_after_deletion(child);
+				set_end();
 			}
 			
 			size_type	size() const {
