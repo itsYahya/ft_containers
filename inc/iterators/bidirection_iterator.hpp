@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 02:05:31 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 03:47:21 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ namespace ft{
 			pointer	ptr;
 		
 		public:
-			iterator_type() : ptr(nullptr) {}
+			bidirection_iterator() : ptr(nullptr) {}
 			
-			iterator_type(pointer p) : ptr(p) {}
+			bidirection_iterator(pointer p) : ptr(p) {}
 
-			iterator_type(const iterator_type &iter) : ptr(iter.ptr) {}
+			bidirection_iterator(const iterator_type &iter) : ptr(iter.ptr) {}
 			
-			~iterator_type() {};
+			~bidirection_iterator() {};
 			
 			iterator_type	&operator=(const iterator_type &iter){
 				this->ptr = iter.ptr;
@@ -61,24 +61,24 @@ namespace ft{
 			}
 
 			iterator_type	&operator++(){
-				ptr++;
+				ptr = value_type::successor(this->ptr);
 				return (*this);
 			}
 			
 			iterator_type	operator++(int){
 				iterator_type iter(*this);
-				ptr++;
+				ptr = value_type::successor(this->ptr);
 				return (iter);
 			}
 			
 			iterator_type	&operator--(){
-				ptr--;
+				ptr = value_type::predecessor(this->ptr);
 				return (*this);
 			}
 			
 			iterator_type	operator--(int){
 				iterator_type iter(*this);
-				ptr--;
+				ptr = value_type::predecessor(this->ptr);
 				return (iter);
 			}
 	};
