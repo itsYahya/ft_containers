@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:02:57 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:51:11 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:11:43 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ namespace ft{
 		for (; from != until; from++){
 			n++;
 		}
-		return (until - from);
+		return (n);
 	}
 	
 	template <class T>
