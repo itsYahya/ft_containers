@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 17:33:40 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/09 01:41:47 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ namespace ft{
 		public:
 			typedef T				value_type;
 			typedef Node<T>*		pointer;
-			typedef const pointer	const_pointer;
+			typedef const Node<T>*	const_pointer;
 
 			value_type	data;
 			bool		color;
@@ -136,8 +136,8 @@ namespace ft{
 			typedef typename allocator_node::difference_type					difference_type;
 			typedef typename allocator_node::size_type							size_type;
 			typedef RedBlackTree<value_type, Comp, allocator_node>				rbtree;
-			typedef ft::bidirection_iterator<node_type>							iterator;
-			typedef ft::bidirection_iterator<const node_type>					const_iterator;
+			typedef ft::bidirection_iterator<node_type, value_type>				iterator;
+			typedef ft::bidirection_iterator<node_type, const value_type>		const_iterator;
 			typedef ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 			
@@ -422,13 +422,24 @@ namespace ft{
 				return (_size == 0);
 			}
 			
-			iterator	begin() const{
+			iterator	begin(){
 				iterator iter(_size ? node_type::minimum(_root) : _end);
 				return (iter);
 			}
 			
-			iterator	end() const{
-				return (_end);
+			const_iterator	begin() const{
+				const_iterator iter(_size ? node_type::minimum(_root) : _end);
+				return (iter);
+			}
+			
+			iterator	end(){
+				iterator	iter(_end);
+				return (iter);
+			}
+			
+			const_iterator	end() const{
+				const_iterator	iter(_end);
+				return (iter);
 			}
 
 			void	insert(const value_type &value){
