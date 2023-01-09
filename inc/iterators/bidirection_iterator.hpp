@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 17:03:30 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/08 23:54:47 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 
 namespace ft{
 	
-	template <class T>
+	template <class T, class VT>
 	class bidirection_iterator {
 		public:
 			typedef T														node_type;
-			typedef typename T::value_type									value_type;
+			typedef VT														value_type;
 			typedef typename iterator_traits<value_type*>::difference_type	difference_type;
 			typedef typename iterator_traits<value_type*>::pointer			pointer;
 			typedef typename iterator_traits<value_type*>::reference		reference;
 			typedef std::bidirectional_iterator_tag							iterator_category;
-			typedef bidirection_iterator<T>									iterator_type;
+			typedef bidirection_iterator<T, VT>								iterator_type;
 
 		private:
 			node_type*	ptr;
@@ -52,11 +52,11 @@ namespace ft{
 			bool	operator!=(const iterator_type &iter){
 				return (iter.ptr != ptr);
 			}
-
-			reference	operator*() const{
+			
+			reference	operator*(){
 				return (ptr->data);
 			}
-
+			
 			pointer		operator->() const{
 				return (&ptr->data);
 			}
