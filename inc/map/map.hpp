@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 23:08:57 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 23:31:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ namespace ft{
 			template <class InputIterator>
 			map(InputIterator from, InputIterator until, const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
 				: _key_comp(comp), _alloc(alloc), _value_comp(_key_comp), _tree(_value_comp){
-				for (; from != until; from++){
-					
-				}
+				insert(from, until);
 			}
 			
 			map(const map &m) : _key_comp(m._key_comp), _alloc(m._alloc) ,_value_comp(_key_comp){
@@ -130,6 +128,12 @@ namespace ft{
 				(void) position;
 				pair = _tree.insert(value);
 				return (pair.first);
+			}
+			
+			template <class InputIterator>
+			void	insert(InputIterator from, InputIterator until){
+				for (; from != until; from++)
+					_tree.insert(*from);
 			}
 	};
 
