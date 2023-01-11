@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 03:59:37 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:13:45 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,11 +186,11 @@ namespace ft{
 					if (_comp(node->data, tree->data)){
 						tree = tree->left;
 						side = LEFT;
-					}
-					else{
+					} else if (_comp(tree->data, node->data)){
 						tree = tree->right;
 						side = RIGHT;
-					}
+					} else
+						return (nullptr);
 				}
 				return (parent);
 			}
@@ -442,17 +442,23 @@ namespace ft{
 				return (iter);
 			}
 
-			void	insert(const value_type &value){
-				pointer	node, parent;
-				bool	side;
+			ft::pair<iterator, bool>	insert(const value_type &value){
+				pointer						node, parent;
+				ft::pair<iterator, bool> 	return_value;
+				bool						side;
 				
 				_unset_end();
 				node = _make_node(value);
+				return_value.first = node;
 				if (_root == _nil){
 					_root = node;
+					return_value.second = true;
 				}
 				else {
 					parent = _get_parent_isertion(_root, node, side);
+					return_value.second = (parent != nullptr);
+					if (parent == nullptr)
+						return (_set_end(), return_value);
 					node->parent = parent;
 					if (side == RIGHT)
 						parent->right = node;
@@ -463,6 +469,7 @@ namespace ft{
 				_size++;
 				_root->color = black;
 				_set_end();
+				return (return_value);
 			}
 			
 			void	print(){
