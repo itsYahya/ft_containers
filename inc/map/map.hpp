@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 04:00:12 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:15:46 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,12 @@ namespace ft{
 
 			size_type	max_size() const{
 				return (_tree.max_size());
+			}
+
+			ft::pair<iterator, bool>	insert(const value_type &value){
+				ft::pair<iterator, bool> pair;
+				pair = _tree.insert(value);
+				return (pair);
 			}
 	};
 
