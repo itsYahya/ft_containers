@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 03:50:08 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:52:06 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ namespace ft{
 			const_reverse_iterator	rend() const{
 				return (const_reverse_iterator(end()));
 			}
-
+			
+			bool	empty() const{
+				return (_tree.empty());
+			}
 	};
 
 	template <class Key, class T, class Compare, class Alloc>
