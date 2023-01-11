@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 02:52:26 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 02:57:06 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,13 @@ namespace ft{
 			explicit	map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
 						: _key_comp(comp), _alloc(alloc) ,_value_comp(_key_comp), _tree(_value_comp){}
 			
-			
+			template <class InputIterator>
+			map(InputIterator from, InputIterator until, const key_compare &comp = key_compare(), const allocaotr_type &alloc = allocator_type())
+				: _key_comp(comp), _alloc(alloc), _value_comp(_key_comp), _tree(_value_comp){
+				for (; from != until; from++){
+					
+				}
+			}
 			
 	};
 
