@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 03:03:59 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:05:35 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ namespace ft{
 				this->_tree = m._tree;
 				return (*this);
 			}
+
+			~map() {}
 	};
 
 	template <class Key, class T, class Compare, class Alloc>
