@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 02:49:43 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 04:41:52 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace ft{
 				insert(from, until);
 			}
 			
-			map(const map &m) : _key_comp(m._key_comp), _alloc(m._alloc) ,_value_comp(_key_comp){
+			map(const map &m) : _key_comp(m._key_comp), _alloc(m._alloc) ,_value_comp(_key_comp), _tree(_value_comp){
 				*this = m;
 			}
 			
@@ -156,6 +156,13 @@ namespace ft{
 					tmp = from++;
 				}
 				erase(tmp);
+			}
+
+			void	swap(map &m){
+				map tmp(m);
+
+				m = *this;
+				*this = tmp;
 			}
 	};
 
