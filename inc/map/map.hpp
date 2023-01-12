@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 23:31:54 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/11 23:43:34 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ namespace ft{
 			void	insert(InputIterator from, InputIterator until){
 				for (; from != until; from++)
 					_tree.insert(*from);
+			}
+
+			void	erase(iterator position){
+				_tree.delete_node(*position);
 			}
 	};
 
