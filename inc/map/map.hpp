@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 04:56:02 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:35:05 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ namespace ft{
 	class map{
 		public:
 			typedef ft::pair<const Key, T>											value_type;
-			typedef Key																key_value;
-			typedef T																mapped_value;
+			typedef Key																key_type;
+			typedef T																mapped_type;
 			typedef Compare															key_compare;
 			class 																	value_compare;
 			typedef Alloc															allocator_type;
@@ -140,10 +140,10 @@ namespace ft{
 				_tree.delete_node(*position);
 			}
 			
-			size_type	erase(const key_value &key){
+			size_type	erase(const key_type &key){
 				size_type	size;
 				
-				size = _tree.delete_node(value_type(key, mapped_value()));
+				size = _tree.delete_node(value_type(key, mapped_type()));
 				return (size);
 			}
 
@@ -179,6 +179,18 @@ namespace ft{
 
 			allocator_type	get_allocator() const{
 				return (_alloc);
+			}
+	
+			mapped_type	&operator[](const key_type &key){
+				typename redblacktree::pointer	node;
+				iterator						iter;
+				
+				node = _tree.search(value_type(key, mapped_type()));
+				if (node->is_nil()){
+					iter = insert(value_type(key, mapped_type())).first;
+					return ((*iter).second);
+				}
+				return (node->data.second);
 			}
 	};
 
