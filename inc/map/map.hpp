@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 05:35:05 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:46:06 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,24 @@ namespace ft{
 					iter = insert(value_type(key, mapped_type())).first;
 					return ((*iter).second);
 				}
+				return (node->data.second);
+			}
+
+			mapped_type	&at(const key_type &key){
+				typename redblacktree::pointer	node;
+				
+				node = _tree.search(value_type(key, mapped_type()));
+				if (node->is_nil())
+					throw std::out_of_range("this key is out of rang");
+				return (node->data.second);
+			}
+
+			const mapped_type	&at(const key_type &key) const{
+				typename redblacktree::pointer	node;
+				
+				node = _tree.search(value_type(key, mapped_type()));
+				if (node->is_nil())
+					throw std::out_of_range("this key is out of rang");
 				return (node->data.second);
 			}
 	};
