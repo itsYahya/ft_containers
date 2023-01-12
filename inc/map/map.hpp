@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 04:54:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 04:56:02 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,10 @@ namespace ft{
 
 			value_compare	value_comp() const{
 				return (_value_comp);
+			}
+
+			allocator_type	get_allocator() const{
+				return (_alloc);
 			}
 	};
 
