@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 02:30:26 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 03:18:26 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,7 +391,6 @@ namespace ft{
 				node->color = black;
 			}
 
-			
 			void	_set_end(){
 				if (_root == _nil)
 					return ;
@@ -512,6 +511,24 @@ namespace ft{
 
 			size_type	max_size() const {
 				return (_alloc.max_size());
+			}
+			
+			void	clear(){
+				while (_root && !_root->is_nil())
+					delete_node(_root->data);
+			}
+			
+			RedBlackTree	&operator=(const RedBlackTree &tree){
+				const_iterator iter, end;
+				
+				if (this == &tree)
+					return (*this);
+				clear();
+				iter = tree.begin();
+				end = tree.end();
+				for (; iter != end; iter++)
+					insert(*iter);
+				return (*this);
 			}
 	};
 }
