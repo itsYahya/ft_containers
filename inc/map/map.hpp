@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 04:41:52 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 04:54:23 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,18 @@ namespace ft{
 
 				m = *this;
 				*this = tmp;
+			}
+			
+			void	clear(){
+				_tree.clear();
+			}
+	
+			key_compare	key_comp() const{
+				return (_key_comp);
+			}
+
+			value_compare	value_comp() const{
+				return (_value_comp);
 			}
 	};
 
