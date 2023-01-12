@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/11 20:13:45 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 02:30:26 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -476,13 +476,13 @@ namespace ft{
 				_print(_root, std::string());
 			}
 
-			void	delete_node(const value_type &value){
+			size_type	delete_node(const value_type &value){
 				pointer node, child, min;
 				bool	color;
 
 				_unset_end();
 				node = _search(value);
-				if (node->is_nil()) return ;
+				if (node->is_nil()) return 0;
 				color = node->color;
 				if (node->left->is_nil() || node->right->is_nil()){
 					if (node->left->is_nil()) child = node->right;
@@ -503,6 +503,7 @@ namespace ft{
 				if (color == black)
 					_maintain_after_deletion(child);
 				_set_end();
+				return (1);
 			}
 			
 			size_type	size() const {
