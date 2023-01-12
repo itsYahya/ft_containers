@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 03:18:26 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:05:23 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,22 +305,6 @@ namespace ft{
 				node->parent = parent;
 			}
 
-			pointer	_search(const value_type &value){
-				pointer	tree;
-
-				tree = _root;
-				while (!tree->is_nil())
-				{
-					if (_comp(tree->data, value))
-						tree = tree->right;
-					else if (_comp(value, tree->data))
-						tree = tree->left;
-					else
-						return (tree);
-				}
-				return (tree);
-			}
-
 			void	__transplant_v2(pointer tree, pointer node, pointer min, pointer node_d, bool side){
 				_transplant(tree, node);
 				if (side == LEFT){
@@ -420,6 +404,22 @@ namespace ft{
 			bool	empty() const {
 				return (_size == 0);
 			}
+
+			pointer	search(const value_type &value){
+				pointer	tree;
+
+				tree = _root;
+				while (!tree->is_nil())
+				{
+					if (_comp(tree->data, value))
+						tree = tree->right;
+					else if (_comp(value, tree->data))
+						tree = tree->left;
+					else
+						return (tree);
+				}
+				return (tree);
+			}
 			
 			iterator	begin(){
 				iterator iter(_size ? node_type::minimum(_root) : _end);
@@ -480,7 +480,7 @@ namespace ft{
 				bool	color;
 
 				_unset_end();
-				node = _search(value);
+				node = search(value);
 				if (node->is_nil()) return 0;
 				color = node->color;
 				if (node->left->is_nil() || node->right->is_nil()){
