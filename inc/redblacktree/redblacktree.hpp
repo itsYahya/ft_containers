@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/13 03:08:13 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/13 03:38:33 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,7 +413,7 @@ namespace ft{
 				return (_size == 0);
 			}
 
-			pointer	search(const value_type &value){
+			pointer	search(const value_type &value) const{
 				pointer	tree;
 
 				tree = _root;
@@ -537,6 +537,15 @@ namespace ft{
 				for (; iter != end; iter++)
 					insert(*iter);
 				return (*this);
+			}
+
+			pointer	find(const value_type &value) const{
+				pointer	node;
+				
+				node = search(value);
+				if (node->is_nil())
+					return (_end);
+				return (node);
 			}
 	};
 }
