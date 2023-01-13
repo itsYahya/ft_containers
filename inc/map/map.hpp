@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 05:46:06 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/13 03:32:06 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,24 @@ namespace ft{
 				if (node->is_nil())
 					throw std::out_of_range("this key is out of rang");
 				return (node->data.second);
+			}
+
+			iterator	find(const key_type &key){
+				typename redblacktree::pointer	node;
+				iterator						iter;
+				
+				node = _tree.find(value_type(key, mapped_type()));
+				iter = iterator(node);
+				return (iter);
+			}
+
+			const_iterator	find(const key_type &key) const{
+				typename redblacktree::pointer	node;
+				const_iterator						iter;
+				
+				node = _tree.find(value_type(key, mapped_type()));
+				iter = const_iterator(node);
+				return (iter);
 			}
 	};
 
