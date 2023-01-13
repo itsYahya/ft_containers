@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/13 04:49:44 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:57:21 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,20 @@ namespace ft{
 
 			size_type	count(const key_type &key) const{
 				return (find(key) != end());
+			}
+
+			iterator	lower_bound(const key_type &key){
+				iterator	iter;
+
+				iter = find(key);
+				if (iter != end())
+					return (iter);
+				iter = begin();
+				for (; iter != end(); iter++){
+					if (_value_comp(value_type(key, mapped_type()), *iter))
+						return (iter);
+				}
+				return (iter);
 			}
 	};
 
