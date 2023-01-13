@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/12 05:05:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/13 03:08:13 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,7 +400,15 @@ namespace ft{
 				_nil->color = black;
 				_root = _nil;
 			}
-
+			
+			~RedBlackTree(){
+				clear();
+				_alloc.destroy(_nil);
+				_alloc.destroy(_end);
+				_alloc.deallocate(_nil, 1);
+				_alloc.deallocate(_end, 1);
+			}
+			
 			bool	empty() const {
 				return (_size == 0);
 			}
