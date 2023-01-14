@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 02:34:01 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/14 00:24:44 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:16:15 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,22 @@ namespace ft{
 				if (iter == end())
 					return (lower_bound(key));
 				return (++iter);
+			}
+
+			ft::pair<iterator, iterator>	equal_range(const key_type &key){
+				ft::pair<iterator, iterator>	pair;
+
+				pair.first = lower_bound(key);
+				pair.second = upper_bound(key);
+				return (pair);
+			}
+
+			ft::pair<const_iterator, const_iterator>	equal_range(const key_type &key) const{
+				ft::pair<const_iterator, const_iterator>	pair;
+
+				pair.first = lower_bound(key);
+				pair.second = upper_bound(key);
+				return (pair);
 			}
 			
 	};
