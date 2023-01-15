@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 03:57:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:01:07 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ namespace	ft{
 
 			explicit	set(const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _key_comp(comp), _tree(_key_comp) {}
 			
+			template <class InputIterator>
+			set (InputIterator from, InputIterator until, const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) 
+				: _alloc(alloc), _key_comp(comp), _tree(_key_comp)
+			{
+				isert(from, until);
+			}
+
 			set	(const set &s){
 				*this = s;
 			}
