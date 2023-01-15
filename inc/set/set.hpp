@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 05:25:17 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:29:31 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,56 @@ namespace	ft{
 				iter = const_iterator(node);
 				return (iter);
 			}
+			
+			size_type	count(const value_type &value) const{
+				return (find(value) != end());
+			}
 
+			iterator	lower_bound(const value_type &value){
+				iterator	iter;
+
+				iter = find(value);
+				if (iter != end())
+					return (iter);
+				iter = begin();
+				for (; iter != end(); iter++){
+					if (_value_comp(value, *iter))
+						return (iter);
+				}
+				return (iter);
+			}
+			
+			const_iterator	lower_bound(const value_type &value) const{
+				const_iterator	iter;
+
+				iter = find(value);
+				if (iter != end())
+					return (iter);
+				iter = begin();
+				for (; iter != end(); iter++){
+					if (_value_comp(value, *iter))
+						return (iter);
+				}
+				return (iter);
+			}
+
+			iterator	upper_bound(const value_type &value){
+				iterator	iter;
+
+				iter = find(value);
+				if (iter == end())
+					return (lower_bound(value));
+				return (++iter);
+			}
+
+ 			const_iterator	upper_bound(const value_type &value) const{
+				const_iterator	iter;
+
+				iter = find(value);
+				if (iter == end())
+					return (lower_bound(value));
+				return (++iter);
+			}
 	};
 }
 
