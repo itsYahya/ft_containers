@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 05:16:31 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:18:20 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,15 @@ namespace	ft{
 			size_type	max_size() const{
 				return (_alloc.max_size());
 			}
+
+			key_comapre	key_comp() const{
+				return (_key_comp);
+			}
+
+			value_compare	value_comp() const{
+				return (_value_comp);
+			}
+			
 	};
 }
 
