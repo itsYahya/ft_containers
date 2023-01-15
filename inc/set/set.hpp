@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 04:16:05 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:37:38 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ namespace	ft{
 				*this = s;
 			}
 
+			~set() {}
+			
 			set	&operator=(const set &s){
 				this->_alloc = s._alloc;
 				this->_key_comp = s._key_comp;
