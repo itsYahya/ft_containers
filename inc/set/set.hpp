@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 03:53:07 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 03:53:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ namespace	ft{
 
 			explicit	set(const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _key_comp(comp), _tree(_key_comp) {}
 			
+			set	(const set &s){
+				*this = s;
+			}
+
 			set	&operator=(const set &s){
 				this->_alloc = s._alloc;
 				this->_key_comp = s._key_comp;
