@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 05:05:52 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:09:35 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,28 @@ namespace	ft{
 				return (const_reverse_iterator(_tree.end()));
 			}
 
+			void	erase(iterator position){
+				_tree.delete_node(*position);
+			}
+			
+			size_type	erase(const value_type &value){
+				size_type	size;
+				
+				size = _tree.delete_node(value);
+				return (size);
+			}
+
+			void	erase(iterator from, iterator end){
+				iterator	tmp;
+
+				tmp = from++;
+				while (from != end){
+					erase(*tmp);
+					tmp = from++;
+				}
+				erase(*tmp);
+			}
+			
 			size_type	empty() const{
 				return (_tree.empty());
 			}
