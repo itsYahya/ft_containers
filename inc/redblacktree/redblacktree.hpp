@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/13 03:38:33 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 03:47:24 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 #include "bidirection_iterator.hpp"
 #include "reverse_iterator.hpp"
+#include "pair.hpp"
 #include <iostream>
 
 namespace ft{
