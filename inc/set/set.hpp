@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 04:11:23 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:11:58 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ namespace	ft{
 				return (_tree.empty());
 			}
 
+			size_type	size() const{
+				return (_tree.size());
+			}
 	};
 }
 
