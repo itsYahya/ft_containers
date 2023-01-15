@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 03:49:07 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 03:50:35 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,13 @@ namespace	ft{
 			typedef typename redblacktree::reverse_iterator							reverse_iterator;
 			typedef typename redblacktree::const_reverse_iterator					const_reverse_iterator;
 
+			explicit	set(const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _key_comp(comp), _tree(_key_comp) {}
 			
+			
+
+			size_type	empty() const{
+				return (_tree.empty());
+			} 
 	};
 }
 
