@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 05:18:20 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:25:17 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ namespace	ft{
 		public:
 			typedef T																value_type;
 			typedef T																key_type;
-			typedef Compare															value_comapre;
-			typedef Compare															key_comapre;
+			typedef Compare															value_compare;
+			typedef Compare															key_compare;
 			typedef Alloc															allocator_type;
 			typedef typename allocator_type::reference								reference;
 			typedef typename allocator_type::const_reference						const_reference;
@@ -34,10 +34,11 @@ namespace	ft{
 			typedef	typename allocator_type::size_type 								size_type;
 
 		private:
-			typedef ft::RedBlackTree<value_type, value_comapre, allocator_type>		redblacktree;
+			typedef ft::RedBlackTree<value_type, value_compare, allocator_type>		redblacktree;
 			allocator_type															_alloc;
-			key_comapre																_key_comp;
+			key_compare																_key_comp;
 			redblacktree															_tree;
+			value_compare															_value_comp;
 
 		public:
 			typedef typename redblacktree::iterator									iterator;
@@ -45,11 +46,11 @@ namespace	ft{
 			typedef typename redblacktree::reverse_iterator							reverse_iterator;
 			typedef typename redblacktree::const_reverse_iterator					const_reverse_iterator;
 
-			explicit	set(const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _key_comp(comp), _tree(_key_comp) {}
+			explicit	set(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _key_comp(comp), _tree(_key_comp), _value_comp(_key_comp) {}
 			
 			template <class InputIterator>
-			set (InputIterator from, InputIterator until, const key_comapre &comp = key_comapre(), const allocator_type &alloc = allocator_type()) 
-				: _alloc(alloc), _key_comp(comp), _tree(_key_comp)
+			set (InputIterator from, InputIterator until, const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) 
+				: _alloc(alloc), _key_comp(comp), _tree(_key_comp), _value_comp(_key_comp)
 			{
 				isert(from, until);
 			}
@@ -64,6 +65,7 @@ namespace	ft{
 				this->_alloc = s._alloc;
 				this->_key_comp = s._key_comp;
 				this->_tree = s._tree;
+				this->_value_comp = s._value_comp;
 				return (*this);
 			}
 
@@ -163,7 +165,7 @@ namespace	ft{
 				return (_alloc.max_size());
 			}
 
-			key_comapre	key_comp() const{
+			key_compare	key_comp() const{
 				return (_key_comp);
 			}
 
@@ -171,6 +173,24 @@ namespace	ft{
 				return (_value_comp);
 			}
 			
+			iterator	find(const value_type &value){
+				typename redblacktree::pointer	node;
+				iterator						iter;
+				
+				node = _tree.find(value);
+				iter = iterator(node);
+				return (iter);
+			}
+
+			const_iterator	find(const value_type &value) const{
+				typename redblacktree::pointer	node;
+				const_iterator						iter;
+				
+				node = _tree.find(value);
+				iter = const_iterator(node);
+				return (iter);
+			}
+
 	};
 }
 
