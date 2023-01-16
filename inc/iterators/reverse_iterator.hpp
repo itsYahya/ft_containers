@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:19:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2022/12/26 18:16:17 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:31:47 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ namespace ft{
 				return (*this);
 			}			
 
-			reference operator*(){
+			reference operator*() const{
 				iterator_type	tmp(current);
 				return (*(--tmp));
 			}
