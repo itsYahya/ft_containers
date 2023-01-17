@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 02:17:59 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/16 02:34:16 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/17 03:00:47 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ namespace	ft{
 			set (InputIterator from, InputIterator until, const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) 
 				: _alloc(alloc), _key_comp(comp), _tree(_key_comp), _value_comp(_key_comp)
 			{
-				isert(from, until);
+				insert(from, until);
 			}
 
-			set	(const set &s){
+			set	(const set &s): _alloc(s._alloc), _key_comp(s._key_comp), _tree(_key_comp), _value_comp(s._value_comp){
 				*this = s;
 			}
 
