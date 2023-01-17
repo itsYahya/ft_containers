@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/17 03:15:42 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/17 04:43:46 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,8 @@ namespace ft{
 			}
 			
 			void	resize(size_type n, value_type value = value_type()){
+				if (n > max_size())
+					throw std::exception("the wanted size is a lot bigger than the max_size");
 				if (n < _size){
 					for (size_type i = n; i < _size; i++){
 						_alloc.destroy(_arr + i);
@@ -262,6 +264,8 @@ namespace ft{
 			}
 
 			void	reserve(size_type n){
+				if (n > max_size())
+					throw std::exception("the wanted size is a lot bigger than the max_size");
 				if (n > _capacity){
 					_realloc(n);
 				}
