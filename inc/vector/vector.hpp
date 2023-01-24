@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/17 04:45:07 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:43:44 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ namespace ft{
 			explicit vector(const allocator_type &alloc = allocator_type()) {
 				_size = 0;
 				_capacity = 0;
-				_arr = nullptr;
+				_arr = nullptr; // TODO replace nullptr with NULL
 				_alloc = alloc;
 			}
 
@@ -124,19 +124,12 @@ namespace ft{
 			template <class Iterator>
 			vector(typename ft::enable_if<!ft::is_integral<Iterator>::value, Iterator>::type from,
 					Iterator until, const allocator_type &alloc = allocator_type()){
-				difference_type	n;
-				size_type		i;
-				
-				n = ft::difference<Iterator>(from, until);
-				_size = n;
-				_capacity = n;
+				_size = 0;
+				_capacity = 1;
 				_alloc = alloc;
-				_arr = _alloc.allocate(n);
-				i = 0;
-				for (; from != until; from++){
-					_alloc.construct(_arr + i, *from);
-					i++;
-				}
+				_arr = _alloc.allocate(1);
+				
+				assign(from, until);
 			}
 			
 			vector(const vector &x){
@@ -145,9 +138,7 @@ namespace ft{
 				_capacity = x._capacity;
 				_arr = _alloc.allocate(_capacity);
 
-				for (size_type i; i < _size; i++){
-					_alloc.construct(_arr + i, x._arr[i]);
-				}
+				assign(x.begin(), x.end());
 			}
 
 			~vector(){
@@ -243,20 +234,16 @@ namespace ft{
 			
 			void	resize(size_type n, value_type value = value_type()){
 				if (n > max_size())
-					throw std::exception("the wanted size is a lot bigger than the max_size");
+					throw std::out_of_range("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
 				if (n < _size){
 					for (size_type i = n; i < _size; i++){
 						_alloc.destroy(_arr + i);
 					}
 					_size = n;
 				}
-				else if (n < _capacity){
-					for (; _size < n; _size++){
-						_alloc.construct(_arr + _size, value);
-					}
-				}
 				else{
-					_realloc(std::max(_capacity * 2, n));
+					if (n > _capacity)
+						_realloc(std::max(_capacity * 2, n));
 					for (; _size < n; _size++){
 						_alloc.construct(_arr + _size, value);
 					}
@@ -265,7 +252,7 @@ namespace ft{
 
 			void	reserve(size_type n){
 				if (n > max_size())
-					throw std::exception("the wanted size is a lot bigger than the max_size");
+					throw std::out_of_range("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
 				if (n > _capacity){
 					_realloc(n);
 				}
