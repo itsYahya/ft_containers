@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/24 13:43:44 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:08:45 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ namespace ft{
 			}
 
 			void	_construct_rang(ft::random_iterator<const T> from, ft::random_iterator<const T> until, T* arr){
+				for (size_t i = 0; from != until; i++, from++){
+					_alloc.construct(arr + i, *from);
+				}
+			}
+			
+			void	_construct_rang(ft::random_iterator<T> from, ft::random_iterator<T> until, T* arr){
 				for (size_t i = 0; from != until; i++, from++){
 					_alloc.construct(arr + i, *from);
 				}
@@ -313,7 +319,7 @@ namespace ft{
 			}
 
 			template <class Iterator >
-			void	assign(Iterator from, Iterator until){
+			void	assign(typename ft::enable_if<!ft::is_integral<Iterator>::value, Iterator>::type from, Iterator until){
 				size_type n = ft::difference(from, until);
 				_clear();
 				if (n > _capacity)
@@ -383,7 +389,7 @@ namespace ft{
 				tmp = _alloc.allocate(cap);
 				if (_capacity)
 					index = _copy_range(begin(), position, tmp);
-				_construct(from, until, tmp + index);
+				_construct_rang(from, until, tmp + index);
 				_copy_range(position, end(), tmp + index + n);
 				_clear();
 				_alloc.deallocate(_arr, _capacity);
