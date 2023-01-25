@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:23:40 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/25 18:08:45 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:36:14 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,7 +372,7 @@ namespace ft{
 				_construct(tmp + index, n, value);
 				_copy_range(position, end(), tmp + index + n);
 				_clear();
-				_alloc.deallocate(tmp, _capacity);
+				_alloc.deallocate(_arr, _capacity);
 				_arr = tmp;
 				_size = size + n;
 				_capacity = cap;
