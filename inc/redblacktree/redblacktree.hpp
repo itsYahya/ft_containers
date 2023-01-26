@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/15 03:47:24 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/26 13:45:36 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -490,7 +490,7 @@ namespace ft{
 
 				_unset_end();
 				node = search(value);
-				if (node->is_nil()) return 0;
+				if (node->is_nil()) return (_set_end(), 0);
 				color = node->color;
 				if (node->left->is_nil() || node->right->is_nil()){
 					if (node->left->is_nil()) child = node->right;
