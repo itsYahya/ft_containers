@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:37:30 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/24 13:44:07 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:42:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	test(const ft::vector<int> &vector)
 void	printv(const ft::vector<int> &vector){
 	ft::vector<int>::const_iterator iter = vector.begin();
 	for (; iter != vector.end(); iter++)
-		std::cout << *iter << std::endl;
+		std::cout << *iter << " ";
+	std::cout << std::endl;
 }
 
 int main(){
@@ -89,5 +90,18 @@ int main(){
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
+    
+    std::cout << "+++++++++++++" << std::endl;
+    it = v.begin();
+    ft::vector<int> v11 (2,400);
+    v.insert (it + 2 , v11.begin() , v11.end());
+    for (ft::vector<int>::iterator i = v.begin(); i < v.end() ; i++)
+        std::cout << "\t" << *i ;
+    std::cout << std::endl;
+    int myarray [] = { 501,502,503 };
+    v.insert (v.begin(), myarray, myarray+3);
+    for (ft::vector<int>::iterator i = v.begin(); i < v.end() ; i++)
+        std::cout << "\t" << *i ;
+    std::cout << std::endl;
 	return (0);	
 }
