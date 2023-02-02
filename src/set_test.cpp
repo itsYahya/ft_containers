@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 03:23:03 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/17 03:10:06 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/02/02 23:43:54 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ int main(){
 	for (; iii != h.end(); iii++)
 		std::cout << *iii << std::endl;
 	std::cout << h.size() << std::endl;
-	while (1);
 }
