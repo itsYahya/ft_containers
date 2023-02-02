@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:43:52 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/26 13:45:36 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/02/02 23:13:09 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ namespace ft{
 			pointer		left;
 			pointer		parent;
 
-			Node(const value_type &data, pointer parent = nullptr, bool color = red)
-				: data(data), color(color), right(nullptr), left(nullptr), parent(parent) {}
+			Node(const value_type &data, pointer parent = NULL, bool color = red)
+				: data(data), color(color), right(NULL), left(NULL), parent(parent) {}
 			
 			static pointer	minimum(pointer node){
 				while (!node->left->is_nil())
@@ -95,18 +95,18 @@ namespace ft{
 			
 
 			bool	is_nil(){
-				return (this != nullptr && this->right == nullptr && this->left == nullptr);
+				return (this->right == NULL && this->left == NULL);
 			}
-			bool	is_red() { return (this != nullptr && this->color == red); }
-			bool	is_black() { return (this != nullptr && this->color == black); }
-			bool	is_left() { return (this != nullptr && this == parent->left); }
-			bool	is_right() { return (this != nullptr && this == parent->right); }
-			pointer	get_grand_pa() { return (this->parent ? this->parent->parent : nullptr); }
+			bool	is_red() { return (this->color == red); }
+			bool	is_black() { return (this->color == black); }
+			bool	is_left() { return (this == parent->left); }
+			bool	is_right() { return (this == parent->right); }
+			pointer	get_grand_pa() { return (this->parent ? this->parent->parent : NULL); }
 			pointer	get_uncle() {
 				pointer	grand_pa;
 
 				grand_pa = get_grand_pa();
-				if (grand_pa == nullptr) return (nullptr);
+				if (grand_pa == NULL) return (NULL);
 				if (this->parent->is_right()) return (grand_pa->left);
 				return (grand_pa->right);
 			}
@@ -191,7 +191,7 @@ namespace ft{
 						tree = tree->right;
 						side = RIGHT;
 					} else
-						return (nullptr);
+						return (NULL);
 				}
 				return (parent);
 			}
@@ -258,7 +258,7 @@ namespace ft{
 				}
 				else
 					tree->right = _nil;
-				if (parent != nullptr){
+				if (parent != NULL){
 					if (tree->is_right())
 						parent->right = child;
 					else
@@ -282,7 +282,7 @@ namespace ft{
 				}
 				else
 					tree->left = _nil;
-				if (parent != nullptr){
+				if (parent != NULL){
 					if (tree->is_right())
 						parent->right = child;
 					else
@@ -297,7 +297,7 @@ namespace ft{
 			void	_transplant(pointer tree, pointer node){
 				pointer parent = tree->parent;
 				
-				if (parent == nullptr)
+				if (parent == NULL)
 					_root = node;
 				else if (tree->is_right())
 					parent->right = node;
@@ -388,8 +388,8 @@ namespace ft{
 				if (_root == _nil)
 					return ;
 				
-				_root->parent = nullptr;
-				_end->left = nullptr;
+				_root->parent = NULL;
+				_end->left = NULL;
 			}
 
 		public:
@@ -464,8 +464,8 @@ namespace ft{
 				}
 				else {
 					parent = _get_parent_isertion(_root, node, side);
-					return_value.second = (parent != nullptr);
-					if (parent == nullptr)
+					return_value.second = (parent != NULL);
+					if (parent == NULL)
 						return (_set_end(), return_value);
 					node->parent = parent;
 					if (side == RIGHT)

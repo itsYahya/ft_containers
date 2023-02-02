@@ -6,7 +6,7 @@
 /*   By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:58:42 by yel-mrab          #+#    #+#             */
-/*   Updated: 2023/01/08 23:54:47 by yel-mrab         ###   ########.fr       */
+/*   Updated: 2023/02/02 23:11:25 by yel-mrab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ namespace ft{
 			node_type*	ptr;
 		
 		public:
-			bidirection_iterator() : ptr(nullptr) {}
+			bidirection_iterator() : ptr(NULL) {}
 			
 			bidirection_iterator(node_type* p) : ptr(p) {}
 
