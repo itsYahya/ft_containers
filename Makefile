@@ -6,7 +6,7 @@
 #    By: yel-mrab <yel-mrab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/19 16:39:26 by yel-mrab          #+#    #+#              #
-#    Updated: 2023/01/15 03:28:38 by yel-mrab         ###   ########.fr        #
+#    Updated: 2023/02/03 19:40:50 by yel-mrab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ HEADERSFILES = iterators/base_iterator iterators/iterator_traits iterators/rando
 				
 HEADERS := $(addprefix inc/, $(HEADERSFILES:=.hpp))
 
-FILES = set_test
+FILES = vector_tests
 
 OBJS := $(addprefix $(BUILD)/, $(FILES:=.o))
 
